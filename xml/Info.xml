@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inmobiliaria>
+	<Opciones>
+		<Opcion Url="/WebForm1.aspx?Id=0" Texto="Home" Id="0"></Opcion>
+		<Opcion Url="/WebForm1.aspx?Id=1" Texto="Property" Id="1"></Opcion>
+		<Opcion Url="/WebForm1.aspx?Id=2" Texto="Agents" Id="2"></Opcion>
+		<Opcion Url="/WebForm1.aspx?Id=3" Texto="About" Id="3"></Opcion>
+		<Opcion Url="/WebForm1.aspx?Id=4" Texto="Blog" Id="4"></Opcion>
+	</Opciones>
+    <about nombre="BR-Excelentes">
+        <descripcion tipo="misión">Somos una empresa líder en bienes raíces, comprometida con la excelencia y la satisfacción del cliente.</descripcion>
+        <estadisticas>
+            <clientesSatisfechos unidades="personas">2000</clientesSatisfechos>
+            <propiedadesVendidas unidades="propiedades">500</propiedadesVendidas>
+            <numeroAwards unidades="premios">15</numeroAwards>
+        </estadisticas>
+        <agentes total="5">
+            <agente id="1" disponible="sí">
+				<nombre>Carlos Pérez</nombre>
+				<descripcion personalidad="Detallista">Amplio conocimiento del mercado urbano y trato personalizado.</descripcion>
+				<Imagen>assets/img/Agente2.jpg</Imagen>
+				<viviendasVendidas unidades="propiedades">95</viviendasVendidas>
+            </agente>
+            <agente id="2" disponible="no">
+				<nombre>Ana López</nombre>
+				<descripcion personalidad="Extrovertida">Especialista en bienes raíces de lujo con gran orientación al cliente.</descripcion>
+				<Imagen>assets/img/Agente1.jpg</Imagen>
+				<viviendasVendidas unidades="propiedades">120</viviendasVendidas>
+            </agente>
+            <agente id="3" disponible="sí">
+                <nombre>María Antonieta de las nieves</nombre>
+                <descripcion personalidad="Dinámica">Excelente negociadora y entusiasta en la búsqueda de soluciones para los clientes.</descripcion>
+				<Imagen>assets/img/Agente3.jpg</Imagen>
+                <viviendasVendidas unidades="propiedades">140</viviendasVendidas>
+            </agente>
+			<agente id="4" disponible="no">
+				<nombre>Mario García</nombre>
+				<descripcion personalidad="Simpatico">Excelente negociador y entusiasta en la búsqueda de soluciones para los clientes.</descripcion>
+				<Imagen>assets/img/Agente4.jpg</Imagen>
+				<viviendasVendidas unidades="propiedades">100</viviendasVendidas>
+			</agente>
+			<agente id="5" disponible="sí">
+				<nombre>Chavelo García</nombre>
+				<descripcion personalidad="Directo">Excelente negociadora y entusiasta en la búsqueda de soluciones para los clientes.</descripcion>
+				<Imagen>assets/img/Agente5.jpg</Imagen>
+				<viviendasVendidas unidades="propiedades">180</viviendasVendidas>
+			</agente>
+        </agentes>
+    </about>
+    <propiedades total="7">
+        <propiedad id="P1" tipo="casa" estado="venta">
+            <nombre>Habitacion en Polanco</nombre>
+            <descripcionCompleta estado="disponible">Un lugar moderno con balcon privado, terraza y diseño minimalista.</descripcionCompleta>
+            <precio moneda="MXN">$5,000,000</precio>
+            <ciudad>Ciudad de México</ciudad>
+            <caracteristicas>
+                <recamaras unidades="habitaciones">4</recamaras>
+                <banos unidades="baños">3</banos>
+                <cuartoEstudio disponible="sí">sí</cuartoEstudio>
+				<Imagen>assets/img/Propiedad1.jpg</Imagen>
+            </caracteristicas>
+        </propiedad>
+        <propiedad id="P2" tipo="departamento" estado="renta">
+            <nombre>Departamento en Condesa</nombre>
+            <descripcionCompleta estado="disponible">Departamento amplio con balcón y una hermosa vista al parque.</descripcionCompleta>
+            <precio moneda="MXN">$25,000</precio>
+            <ciudad>Ciudad de México</ciudad>
+            <caracteristicas>
+                <recamaras unidades="habitaciones">2</recamaras>
+                <banos unidades="baños">2</banos>
+                <cuartoEstudio disponible="no">no</cuartoEstudio>
+				<Imagen>assets/img/Propiedad2.jpg</Imagen>
+            </caracteristicas>
+        </propiedad>
+        <propiedad id="P3" tipo="terreno" estado="venta">
+            <nombre>Terreno en Valle de Bravo</nombre>
+            <descripcionCompleta estado="disponible">Terreno ideal para construir una casa de descanso rodeada de naturaleza.</descripcionCompleta>
+            <precio moneda="MXN">$3,000,000</precio>
+            <ciudad>Valle de Bravo</ciudad>
+            <caracteristicas>
+                <recamaras unidades="habitaciones">0</recamaras>
+                <banos unidades="baños">0</banos>
+                <cuartoEstudio disponible="no">no</cuartoEstudio>
+				<Imagen>assets/img/Propiedad3.jpeg</Imagen>
+            </caracteristicas>
+        </propiedad>
+		<propiedad id="P4" tipo="casa" estado="venta">
+			<nombre>Casa Moderna</nombre>
+			<descripcionCompleta estado="disponible">Una casa moderna con jardín privado, terraza y diseño minimalista.</descripcionCompleta>
+			<precio moneda="MXN">$50,000,000</precio>
+			<ciudad>Monterrey</ciudad>
+			<caracteristicas>
+				<recamaras unidades="habitaciones">4</recamaras>
+				<banos unidades="baños">3</banos>
+				<cuartoEstudio disponible="sí">sí</cuartoEstudio>
+				<Imagen>assets/img/Propiedad4.jpeg</Imagen>
+			</caracteristicas>
+		</propiedad>
+		<propiedad id="P5" tipo="departamento" estado="renta">
+			<nombre>Departamento en Condesa</nombre>
+			<descripcionCompleta estado="disponible">Departamento amplio con balcón y una hermosa vista al parque.</descripcionCompleta>
+			<precio moneda="MXN">$25,000</precio>
+			<ciudad>Ciudad de México</ciudad>
+			<caracteristicas>
+				<recamaras unidades="habitaciones">2</recamaras>
+				<banos unidades="baños">2</banos>
+				<cuartoEstudio disponible="no">no</cuartoEstudio>
+				<Imagen>assets/img/Propiedad5.jpeg</Imagen>
+			</caracteristicas>
+		</propiedad>
+		<propiedad id="P6" tipo="terreno" estado="venta">
+			<nombre>Terreno en Valle de Bravo</nombre>
+			<descripcionCompleta estado="disponible">Terreno ideal para construir una casa de descanso rodeada de naturaleza.</descripcionCompleta>
+			<precio moneda="MXN">$3,000,000</precio>
+			<ciudad>Valle de Bravo</ciudad>
+			<caracteristicas>
+				<recamaras unidades="habitaciones">0</recamaras>
+				<banos unidades="baños">0</banos>
+				<cuartoEstudio disponible="no">no</cuartoEstudio>
+				<Imagen>assets/img/Propiedad6.jpeg</Imagen>
+			</caracteristicas>
+		</propiedad>
+		<propiedad id="P7" tipo="casa" estado="venta">
+			<nombre>Penthouse</nombre>
+			<descripcionCompleta estado="disponible">Un penthouse moderno, terraza y diseño minimalista.</descripcionCompleta>
+			<precio moneda="MXN">$80,000,000</precio>
+			<ciudad>Zacatlan</ciudad>
+			<caracteristicas>
+				<recamaras unidades="habitaciones">4</recamaras>
+				<banos unidades="baños">3</banos>
+				<cuartoEstudio disponible="sí">sí</cuartoEstudio>
+				<Imagen>assets/img/Propiedad7.jpeg</Imagen>
+			</caracteristicas>
+		</propiedad>
+    </propiedades>
+    <blog totalEntradas="3">
+        <entrada name="B1" Url="/WebForm1.aspx?Id=5" Texto="BlogSingle" Id="5">
+            <titulo>Consejos para comprar tu primera casa</titulo>
+            <fechaPublicacion formato="YYYY-MM-DD">2024-12-01</fechaPublicacion>
+            <numeroComentarios unidades="comentarios">15</numeroComentarios>
+			<Imagen>assets/img/huevos.jpg</Imagen>
+        </entrada>
+        <entrada name="B2" Url="/WebForm1.aspx?Id=5" Texto="BlogSingle" Id="5">
+            <titulo>Las mejores colonias para vivir en CDMX</titulo>
+            <fechaPublicacion formato="YYYY-MM-DD">2024-11-20</fechaPublicacion>
+            <numeroComentarios unidades="comentarios">25</numeroComentarios>
+			<Imagen>assets/img/huevos.jpg</Imagen>
+		</entrada>
+		<entrada name="B3" Url="/WebForm1.aspx?Id=5" Texto="BlogSingle" Id="5">
+			<titulo>¿Rentar o comprar? Pros y contras</titulo>
+			<fechaPublicacion formato="YYYY-MM-DD">2024-10-15</fechaPublicacion>
+			<numeroComentarios unidades="comentarios">30</numeroComentarios>
+			<Imagen>assets/img/huevos.jpg</Imagen>
+        </entrada>
+    </blog>
+	
+</inmobiliaria>
