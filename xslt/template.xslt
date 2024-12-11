@@ -3,7 +3,7 @@
     xmlns:msxsl="urn:schemas-microsoft-com:xslt" exclude-result-prefixes="msxsl">
 	<xsl:output method="html" indent="yes"/>
 
-	<xsl:param name="TipoMenu" select="TipoMenu"></xsl:param>
+	<xsl:param name="Nav" select="Nav"></xsl:param>
 
 	<xsl:template match="inmobiliaria">
 
@@ -82,7 +82,7 @@
 							<ul class="navbar-nav ml-auto">
 								<xsl:for-each select="Opciones/Opcion">
 									<xsl:choose>
-										<xsl:when test="$TipoMenu= @Id">
+										<xsl:when test="$Nav= @Id">
 											<li class="nav-item active">
 												<a href="{@Url}" class="nav-link">
 													<xsl:value-of select="@Texto"/>
@@ -106,7 +106,7 @@
 
 				<section class="home-slider owl-carousel">
 					<xsl:for-each select="propiedades/propiedad[@tipo = 'casa']">
-						<div class="slider-item" style="background-image:{Imagen};">
+						<div class="slider-item" style="background-image: url({caracteristicas/Imagen});">
 							<div class="overlay"></div>
 							<div class="container">
 								<div class="row no-gutters slider-text align-items-md-end align-items-center justify-content-end">
@@ -131,29 +131,35 @@
 								</div>
 							</div>
 						</div>
-					</xsl:for-each>					
+					</xsl:for-each>
 				</section>
 
 
 				<!-- ======= Choose Section ======= -->
 				<xsl:choose>
-					<xsl:when test="$TipoMenu = 0">
+					<xsl:when test="$Nav = 0">
 						<xsl:call-template name="Home"></xsl:call-template>
 					</xsl:when>
-					<xsl:when test="$TipoMenu = 1">
+					<xsl:when test="$Nav = 1">
 						<xsl:call-template name="Property"></xsl:call-template>
 					</xsl:when>
-					<xsl:when test="$TipoMenu = 2">
+					<xsl:when test="$Nav = 2">
 						<xsl:call-template name="Agents"></xsl:call-template>
 					</xsl:when>
-					<xsl:when test="$TipoMenu = 3">
+					<xsl:when test="$Nav = 3">
 						<xsl:call-template name="About"></xsl:call-template>
 					</xsl:when>
-					<xsl:when test="$TipoMenu = 4">
+					<xsl:when test="$Nav = 4">
 						<xsl:call-template name="Blog"></xsl:call-template>
 					</xsl:when>
-					<xsl:when test="$TipoMenu = 5">
-						<xsl:call-template name="BlogSingle"></xsl:call-template>
+					<xsl:when test="$Nav = 5">
+						<xsl:call-template name="VenAJugar"></xsl:call-template>
+					</xsl:when>
+					<xsl:when test="$Nav = 6">
+						<xsl:call-template name="VideoAudio"></xsl:call-template>
+					</xsl:when>
+					<xsl:when test="$Nav = 7">
+						<xsl:call-template name="Ubicacion"></xsl:call-template>
 					</xsl:when>
 					<xsl:otherwise>
 						<xsl:call-template name="Home"></xsl:call-template>
@@ -305,160 +311,53 @@
 	<xsl:template name="Home">
 		<!--Referencia JS-->
 		<script src="js/MiScript.js"></script>
-		
+
 		<section class="ftco-section ftco-properties">
 			<div class="container">
 				<div class="row justify-content-center mb-5 pb-3">
 					<div class="col-md-7 heading-section text-center ftco-animate">
-						<span class="subheading">Recent Posts</span>
-						<h2 class="mb-4">Recent Properties</h2>
+						<span class="subheading">Recientes</span>
+						<h2 class="mb-4">Propiedades en venta</h2>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
 						<div class="properties-slider owl-carousel ftco-animate">
-							<div class="item">
-								<div class="properties">
-									<a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(images/properties-1.jpg);">
-										<div class="icon d-flex justify-content-center align-items-center">
-											<span class="icon-search2"></span>
-										</div>
-									</a>
-									<div class="text p-3">
-										<span class="status sale">Sale</span>
-										<div class="d-flex">
-											<div class="one">
-												<h3>
-													<a href="#">North Parchmore Street</a>
-												</h3>
-												<p>Apartment</p>
+							<xsl:for-each select="propiedades/propiedad[@estado = 'venta']">
+
+								<div class="item">
+									<div class="properties">
+										<a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url({caracteristicas/Imagen});">
+											<div class="icon d-flex justify-content-center align-items-center">
+												<span class="icon-search2"></span>
 											</div>
-											<div class="two">
-												<span class="price">$20,000</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="properties">
-									<a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(images/properties-2.jpg);">
-										<div class="icon d-flex justify-content-center align-items-center">
-											<span class="icon-search2"></span>
-										</div>
-									</a>
-									<div class="text p-3">
-										<div class="d-flex">
-											<span class="status rent">Rent</span>
-											<div class="one">
-												<h3>
-													<a href="#">North Parchmore Street</a>
-												</h3>
-												<p>Apartment</p>
-											</div>
-											<div class="two">
-												<span class="price">
-													$2,000 <small>/ month</small>
-												</span>
+										</a>
+										<div class="text p-3">
+											<span class="status sale">
+												<xsl:value-of select="@estado"/>
+											</span>
+											<div class="d-flex">
+												<div class="one">
+													<h3>
+														<a href="#">
+															<xsl:value-of select="ciudad"/>
+														</a>
+													</h3>
+													<p>
+														<xsl:value-of select="@tipo"/>
+													</p>
+												</div>
+												<div class="two">
+													<span class="price">
+														<xsl:value-of select="precio"/>
+													</span>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="item">
-								<div class="properties">
-									<a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(images/properties-3.jpg);">
-										<div class="icon d-flex justify-content-center align-items-center">
-											<span class="icon-search2"></span>
-										</div>
-									</a>
-									<div class="text p-3">
-										<span class="status sale">Sale</span>
-										<div class="d-flex">
-											<div class="one">
-												<h3>
-													<a href="#">North Parchmore Street</a>
-												</h3>
-												<p>Apartment</p>
-											</div>
-											<div class="two">
-												<span class="price">$20,000</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="properties">
-									<a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(images/properties-4.jpg);">
-										<div class="icon d-flex justify-content-center align-items-center">
-											<span class="icon-search2"></span>
-										</div>
-									</a>
-									<div class="text p-3">
-										<span class="status sale">Sale</span>
-										<div class="d-flex">
-											<div class="one">
-												<h3>
-													<a href="#">North Parchmore Street</a>
-												</h3>
-												<p>Apartment</p>
-											</div>
-											<div class="two">
-												<span class="price">$20,000</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="properties">
-									<a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(images/properties-5.jpg);">
-										<div class="icon d-flex justify-content-center align-items-center">
-											<span class="icon-search2"></span>
-										</div>
-									</a>
-									<div class="text p-3">
-										<span class="status rent">Rent</span>
-										<div class="d-flex">
-											<div class="one">
-												<h3>
-													<a href="#">North Parchmore Street</a>
-												</h3>
-												<p>Apartment</p>
-											</div>
-											<div class="two">
-												<span class="price">
-													$900 <small>/ month</small>
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="properties">
-									<a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(images/properties-6.jpg);">
-										<div class="icon d-flex justify-content-center align-items-center">
-											<span class="icon-search2"></span>
-										</div>
-									</a>
-									<div class="text p-3">
-										<span class="status sale">Sale</span>
-										<div class="d-flex">
-											<div class="one">
-												<h3>
-													<a href="#">North Parchmore Street</a>
-												</h3>
-												<p>Apartment</p>
-											</div>
-											<div class="two">
-												<span class="price">$20,000</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+
+							</xsl:for-each>
 						</div>
 					</div>
 				</div>
@@ -469,159 +368,62 @@
 			<div class="container">
 				<div class="row justify-content-center mb-5 pb-3">
 					<div class="col-md-7 heading-section text-center ftco-animate">
-						<span class="subheading">Special Offers</span>
-						<h2 class="mb-4">Most Recommended Properties</h2>
+						<span class="subheading">Ofertas especiales</span>
+						<h2 class="mb-4">Propiedades mas recomendadas</h2>
 					</div>
 				</div>
 			</div>
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-sm col-md-6 col-lg ftco-animate">
-						<div class="properties">
-							<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/properties-1.jpg);">
-								<div class="icon d-flex justify-content-center align-items-center">
-									<span class="icon-search2"></span>
-								</div>
-							</a>
-							<div class="text p-3">
-								<span class="status sale">Sale</span>
-								<div class="d-flex">
-									<div class="one">
-										<h3>
-											<a href="#">North Parchmore Street</a>
-										</h3>
-										<p>Apartment</p>
+					<xsl:for-each select="propiedades/propiedad/caracteristicas/calificacion">
+
+						<div class="col-sm col-md-6 col-lg ftco-animate">
+							<div class="properties">
+								<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url({../Imagen});">
+									<div class="icon d-flex justify-content-center align-items-center">
+										<span class="icon-search2"></span>
 									</div>
-									<div class="two">
-										<span class="price">$20,000</span>
+								</a>
+								<div class="text p-3">
+									<span class="status sale">
+										<xsl:value-of select="../../@estado"/>
+									</span>
+									<div class="d-flex">
+										<div class="one">
+											<h3>
+												<a href="#">
+													<xsl:value-of select="../../ciudad"/>
+												</a>
+											</h3>
+											<p>
+												<xsl:value-of select="../../@tipo"/>
+											</p>
+										</div>
+										<div class="two">
+											<span class="price">
+												<xsl:value-of select="../../precio"/>
+											</span>
+										</div>
 									</div>
-								</div>
-								<p>Far far away, behind the word mountains, far from the countries</p>
-								<hr/>
-								<p class="bottom-area d-flex">
-									<span>
-										<i class="flaticon-selection"></i> 250sqft
-									</span>
-									<span class="ml-auto">
-										<i class="flaticon-bathtub"></i> 3
-									</span>
-									<span>
-										<i class="flaticon-bed"></i> 4
-									</span>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm col-md-6 col-lg ftco-animate">
-						<div class="properties">
-							<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/properties-2.jpg);">
-								<div class="icon d-flex justify-content-center align-items-center">
-									<span class="icon-search2"></span>
-								</div>
-							</a>
-							<div class="text p-3">
-								<span class="status sale">Sale</span>
-								<div class="d-flex">
-									<div class="one">
-										<h3>
-											<a href="#">North Parchmore Street</a>
-										</h3>
-										<p>Apartment</p>
-									</div>
-									<div class="two">
-										<span class="price">$20,000</span>
-									</div>
-								</div>
-								<p>Far far away, behind the word mountains, far from the countries</p>
-								<hr/>
-								<p class="bottom-area d-flex">
-									<span>
-										<i class="flaticon-selection"></i> 250sqft
-									</span>
-									<span class="ml-auto">
-										<i class="flaticon-bathtub"></i> 3
-									</span>
-									<span>
-										<i class="flaticon-bed"></i> 4
-									</span>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm col-md-6 col-lg ftco-animate">
-						<div class="properties">
-							<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/properties-3.jpg);">
-								<div class="icon d-flex justify-content-center align-items-center">
-									<span class="icon-search2"></span>
-								</div>
-							</a>
-							<div class="text p-3">
-								<span class="status rent">Rent</span>
-								<div class="d-flex">
-									<div class="one">
-										<h3>
-											<a href="#">North Parchmore Street</a>
-										</h3>
-										<p>Apartment</p>
-									</div>
-									<div class="two">
-										<span class="price">
-											$800 <small>/ month</small>
+									<p>
+										<xsl:value-of select="../../descripcionCompleta"/>
+									</p>
+									<hr/>
+									<p class="bottom-area d-flex">
+										<span class="ml-auto">
+											<i class="flaticon-bathtub"></i>
+											<xsl:value-of select="../banos"/>
 										</span>
-									</div>
+										<span>
+											<i class="flaticon-bed"></i>
+											<xsl:value-of select="../recamaras"/>
+										</span>
+									</p>
 								</div>
-								<p>Far far away, behind the word mountains, far from the countries</p>
-								<hr/>
-								<p class="bottom-area d-flex">
-									<span>
-										<i class="flaticon-selection"></i> 250sqft
-									</span>
-									<span class="ml-auto">
-										<i class="flaticon-bathtub"></i> 3
-									</span>
-									<span>
-										<i class="flaticon-bed"></i> 4
-									</span>
-								</p>
 							</div>
 						</div>
-					</div>
-					<div class="col-sm col-md-6 col-lg ftco-animate">
-						<div class="properties">
-							<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/properties-4.jpg);">
-								<div class="icon d-flex justify-content-center align-items-center">
-									<span class="icon-search2"></span>
-								</div>
-							</a>
-							<div class="text p-3">
-								<span class="status sale">Sale</span>
-								<div class="d-flex">
-									<div class="one">
-										<h3>
-											<a href="#">North Parchmore Street</a>
-										</h3>
-										<p>Apartment</p>
-									</div>
-									<div class="two">
-										<span class="price">$20,000</span>
-									</div>
-								</div>
-								<p>Far far away, behind the word mountains, far from the countries</p>
-								<hr/>
-								<p class="bottom-area d-flex">
-									<span>
-										<i class="flaticon-selection"></i> 250sqft
-									</span>
-									<span class="ml-auto">
-										<i class="flaticon-bathtub"></i> 3
-									</span>
-									<span>
-										<i class="flaticon-bed"></i> 4
-									</span>
-								</p>
-							</div>
-						</div>
-					</div>
+
+					</xsl:for-each>
 				</div>
 			</div>
 		</section>
@@ -633,76 +435,29 @@
 						<div class="row ftco-animate">
 							<div class="col-md-12">
 								<div class="carousel-testimony owl-carousel ftco-owl">
-									<div class="item">
-										<div class="testimony-wrap py-4 pb-5">
-											<div class="user-img mb-4" style="background-image: url(images/person_1.jpg)">
-												<span class="quote d-flex align-items-center justify-content-center">
-													<i class="icon-quote-left"></i>
-												</span>
-											</div>
-											<div class="text text-center">
-												<p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-												<p class="name">Roger Scott</p>
-												<span class="position">Clients</span>
-											</div>
-										</div>
-									</div>
-									<div class="item">
-										<div class="testimony-wrap py-4 pb-5">
-											<div class="user-img mb-4" style="background-image: url(images/person_2.jpg)">
-												<span class="quote d-flex align-items-center justify-content-center">
-													<i class="icon-quote-left"></i>
-												</span>
-											</div>
-											<div class="text text-center">
-												<p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-												<p class="name">Roger Scott</p>
-												<span class="position">Agent</span>
+									<xsl:for-each select="about/agentes/agente">
+										<div class="item">
+											<div class="testimony-wrap py-4 pb-5">
+												<div class="user-img mb-4" style="background-image: url({Imagen})">
+													<span class="quote d-flex align-items-center justify-content-center">
+														<i class="icon-quote-left"></i>
+													</span>
+												</div>
+												<div class="text text-center">
+													<p class="mb-4">
+														<xsl:value-of select="descripcion"/>
+													</p>
+													<p class="name">
+														<xsl:value-of select="nombre"/>
+													</p>
+													<span class="position">
+														<xsl:value-of select="/descripcion/@personalidad"/>
+													</span>
+												</div>
 											</div>
 										</div>
-									</div>
-									<div class="item">
-										<div class="testimony-wrap py-4 pb-5">
-											<div class="user-img mb-4" style="background-image: url(images/person_3.jpg)">
-												<span class="quote d-flex align-items-center justify-content-center">
-													<i class="icon-quote-left"></i>
-												</span>
-											</div>
-											<div class="text text-center">
-												<p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-												<p class="name">Roger Scott</p>
-												<span class="position">Client</span>
-											</div>
-										</div>
-									</div>
-									<div class="item">
-										<div class="testimony-wrap py-4 pb-5">
-											<div class="user-img mb-4" style="background-image: url(images/person_1.jpg)">
-												<span class="quote d-flex align-items-center justify-content-center">
-													<i class="icon-quote-left"></i>
-												</span>
-											</div>
-											<div class="text text-center">
-												<p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-												<p class="name">Roger Scott</p>
-												<span class="position">Client</span>
-											</div>
-										</div>
-									</div>
-									<div class="item">
-										<div class="testimony-wrap py-4 pb-5">
-											<div class="user-img mb-4" style="background-image: url(images/person_1.jpg)">
-												<span class="quote d-flex align-items-center justify-content-center">
-													<i class="icon-quote-left"></i>
-												</span>
-											</div>
-											<div class="text text-center">
-												<p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-												<p class="name">Roger Scott</p>
-												<span class="position">Client</span>
-											</div>
-										</div>
-									</div>
+
+									</xsl:for-each>
 								</div>
 							</div>
 						</div>
@@ -738,40 +493,32 @@
 
 	<xsl:template name="Property">
 
+
 		<section class="ftco-search">
+			<script src="js/MiScript.js" type="text/javascript"></script>
+
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12 search-wrap">
 						<h2 class="heading h5 d-flex align-items-center pr-4">
-							<span class="ion-ios-search mr-3"></span> Search Property
+							<span class="ion-ios-search mr-3"></span> Encuentra tu casa
 						</h2>
-						<form action="#" class="search-property">
+						<form action="#" method="post" class="search-property">
 							<div class="row">
 								<div class="col-md align-items-end">
 									<div class="form-group">
-										<label for="#">Keyword</label>
+										<label for="#">Palabra Clave</label>
 										<div class="form-field">
 											<div class="icon">
 												<span class="icon-my_location"></span>
 											</div>
-											<input type="text" class="form-control" placeholder="Keyword"/>
+											<input type="text" class="form-control" placeholder="Palabra clave"/>
 										</div>
 									</div>
 								</div>
 								<div class="col-md align-items-end">
 									<div class="form-group">
-										<label for="#">Location</label>
-										<div class="form-field">
-											<div class="icon">
-												<span class="icon-my_location"></span>
-											</div>
-											<input type="text" class="form-control" placeholder="City/Locality Name"/>
-										</div>
-									</div>
-								</div>
-								<div class="col-md align-items-end">
-									<div class="form-group">
-										<label for="#">Property Type</label>
+										<label for="#">Tipo de propiedad</label>
 										<div class="form-field">
 											<div class="select-wrap">
 												<div class="icon">
@@ -792,7 +539,7 @@
 								</div>
 								<div class="col-md align-items-end">
 									<div class="form-group">
-										<label for="#">Property Status</label>
+										<label for="#">Estatus</label>
 										<div class="form-field">
 											<div class="select-wrap">
 												<div class="icon">
@@ -809,7 +556,7 @@
 								</div>
 								<div class="col-md align-items-end">
 									<div class="form-group">
-										<label for="#">Agents</label>
+										<label for="#">Agentes</label>
 										<div class="form-field">
 											<div class="select-wrap">
 												<div class="icon">
@@ -831,26 +578,7 @@
 							<div class="row">
 								<div class="col-md align-items-end">
 									<div class="form-group">
-										<label for="#">Min Beds</label>
-										<div class="form-field">
-											<div class="select-wrap">
-												<div class="icon">
-													<span class="ion-ios-arrow-down"></span>
-												</div>
-												<select name="" id="" class="form-control">
-													<option value="">1</option>
-													<option value="">2</option>
-													<option value="">3</option>
-													<option value="">4</option>
-													<option value="">5</option>
-												</select>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md align-items-end">
-									<div class="form-group">
-										<label for="#">Min Bathroom</label>
+										<label for="#">Minimo Cuartos</label>
 										<div class="form-field">
 											<div class="select-wrap">
 												<div class="icon">
@@ -925,36 +653,10 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-md align-items-end">
-									<div class="form-group">
-										<label for="#">
-											Min Area <span>(sq ft)</span>
-										</label>
-										<div class="form-field">
-											<div class="icon">
-												<span class="icon-my_location"></span>
-											</div>
-											<input type="text" class="form-control" placeholder="Min Area"/>
-										</div>
-									</div>
-								</div>
-								<div class="col-md align-items-end">
-									<div class="form-group">
-										<label for="#">
-											Max Area <span>(sq ft)</span>
-										</label>
-										<div class="form-field">
-											<div class="icon">
-												<span class="icon-my_location"></span>
-											</div>
-											<input type="text" class="form-control" placeholder="Max Area"/>
-										</div>
-									</div>
-								</div>
 								<div class="col-md align-self-end">
 									<div class="form-group">
 										<div class="form-field">
-											<input type="submit" value="Search" class="form-control btn btn-primary"/>
+											<input type="submit" value="Search" class="form-control btn btn-primary" id="miBoton"/>
 										</div>
 									</div>
 								</div>
@@ -969,334 +671,54 @@
 		<section class="ftco-section bg-light">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-4 ftco-animate">
-						<div class="properties">
-							<a href="property-single.html" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/properties-1.jpg);">
-								<div class="icon d-flex justify-content-center align-items-center">
-									<span class="icon-search2"></span>
-								</div>
-							</a>
-							<div class="text p-3">
-								<span class="status sale">Sale</span>
-								<div class="d-flex">
-									<div class="one">
-										<h3>
-											<a href="property-single.html">North Parchmore Street</a>
-										</h3>
-										<p>Apartment</p>
+					<xsl:for-each select="propiedades/propiedad">
+						<div class="col-md-4 ftco-animate">
+							<div class="properties">
+								<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url({caracteristicas/Imagen});">
+									<div class="icon d-flex justify-content-center align-items-center">
+										<span class="icon-search2"></span>
 									</div>
-									<div class="two">
-										<span class="price">$20,000</span>
+								</a>
+								<div class="text p-3">
+									<span class="status sale">
+										<xsl:value-of select="@estado"/>
+									</span>
+									<div class="d-flex">
+										<div class="one">
+											<h3>
+												<a href="property-single.html">
+													<xsl:value-of select="nombre"/>
+												</a>
+											</h3>
+											<p>
+												<xsl:value-of select="@tipo"/>
+											</p>
+										</div>
+										<div class="two">
+											<span class="price">
+												<xsl:value-of select="precio"/>
+											</span>
+										</div>
 									</div>
-								</div>
-								<p>Far far away, behind the word mountains, far from the countries</p>
-								<hr/>
-								<p class="bottom-area d-flex">
-									<span>
-										<i class="flaticon-selection"></i> 250sqft
-									</span>
-									<span class="ml-auto">
-										<i class="flaticon-bathtub"></i> 3
-									</span>
-									<span>
-										<i class="flaticon-bed"></i> 4
-									</span>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 ftco-animate">
-						<div class="properties">
-							<a href="property-single.html" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/properties-2.jpg);">
-								<div class="icon d-flex justify-content-center align-items-center">
-									<span class="icon-search2"></span>
-								</div>
-							</a>
-							<div class="text p-3">
-								<span class="status sale">Sale</span>
-								<div class="d-flex">
-									<div class="one">
-										<h3>
-											<a href="property-single.html">North Parchmore Street</a>
-										</h3>
-										<p>Apartment</p>
-									</div>
-									<div class="two">
-										<span class="price">$20,000</span>
-									</div>
-								</div>
-								<p>Far far away, behind the word mountains, far from the countries</p>
-								<hr/>
-								<p class="bottom-area d-flex">
-									<span>
-										<i class="flaticon-selection"></i> 250sqft
-									</span>
-									<span class="ml-auto">
-										<i class="flaticon-bathtub"></i> 3
-									</span>
-									<span>
-										<i class="flaticon-bed"></i> 4
-									</span>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 ftco-animate">
-						<div class="properties">
-							<a href="property-single.html" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/properties-3.jpg);">
-								<div class="icon d-flex justify-content-center align-items-center">
-									<span class="icon-search2"></span>
-								</div>
-							</a>
-							<div class="text p-3">
-								<span class="status rent">Rent</span>
-								<div class="d-flex">
-									<div class="one">
-										<h3>
-											<a href="property-single.html">North Parchmore Street</a>
-										</h3>
-										<p>Apartment</p>
-									</div>
-									<div class="two">
-										<span class="price">
-											$800 <small>/ month</small>
+									<p>
+										<xsl:value-of select="descripcionCompleta"/>
+									</p>
+									<hr/>
+									<p class="bottom-area d-flex">
+										<span class="ml-auto">
+											<i class="flaticon-bathtub"></i>
+											<xsl:value-of select="caracteristicas/banos"/>
 										</span>
-									</div>
-								</div>
-								<p>Far far away, behind the word mountains, far from the countries</p>
-								<hr/>
-								<p class="bottom-area d-flex">
-									<span>
-										<i class="flaticon-selection"></i> 250sqft
-									</span>
-									<span class="ml-auto">
-										<i class="flaticon-bathtub"></i> 3
-									</span>
-									<span>
-										<i class="flaticon-bed"></i> 4
-									</span>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 ftco-animate">
-						<div class="properties">
-							<a href="property-single.html" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/properties-4.jpg);">
-								<div class="icon d-flex justify-content-center align-items-center">
-									<span class="icon-search2"></span>
-								</div>
-							</a>
-							<div class="text p-3">
-								<span class="status sale">Sale</span>
-								<div class="d-flex">
-									<div class="one">
-										<h3>
-											<a href="property-single.html">North Parchmore Street</a>
-										</h3>
-										<p>Apartment</p>
-									</div>
-									<div class="two">
-										<span class="price">$20,000</span>
-									</div>
-								</div>
-								<p>Far far away, behind the word mountains, far from the countries</p>
-								<hr/>
-								<p class="bottom-area d-flex">
-									<span>
-										<i class="flaticon-selection"></i> 250sqft
-									</span>
-									<span class="ml-auto">
-										<i class="flaticon-bathtub"></i> 3
-									</span>
-									<span>
-										<i class="flaticon-bed"></i> 4
-									</span>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 ftco-animate">
-						<div class="properties">
-							<a href="property-single.html" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/properties-5.jpg);">
-								<div class="icon d-flex justify-content-center align-items-center">
-									<span class="icon-search2"></span>
-								</div>
-							</a>
-							<div class="text p-3">
-								<span class="status sale">Sale</span>
-								<div class="d-flex">
-									<div class="one">
-										<h3>
-											<a href="property-single.html">North Parchmore Street</a>
-										</h3>
-										<p>Apartment</p>
-									</div>
-									<div class="two">
-										<span class="price">$20,000</span>
-									</div>
-								</div>
-								<p>Far far away, behind the word mountains, far from the countries</p>
-								<hr/>
-								<p class="bottom-area d-flex">
-									<span>
-										<i class="flaticon-selection"></i> 250sqft
-									</span>
-									<span class="ml-auto">
-										<i class="flaticon-bathtub"></i> 3
-									</span>
-									<span>
-										<i class="flaticon-bed"></i> 4
-									</span>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 ftco-animate">
-						<div class="properties">
-							<a href="property-single.html" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/properties-6.jpg);">
-								<div class="icon d-flex justify-content-center align-items-center">
-									<span class="icon-search2"></span>
-								</div>
-							</a>
-							<div class="text p-3">
-								<span class="status sale">Sale</span>
-								<div class="d-flex">
-									<div class="one">
-										<h3>
-											<a href="property-single.html">North Parchmore Street</a>
-										</h3>
-										<p>Apartment</p>
-									</div>
-									<div class="two">
-										<span class="price">$20,000</span>
-									</div>
-								</div>
-								<p>Far far away, behind the word mountains, far from the countries</p>
-								<hr/>
-								<p class="bottom-area d-flex">
-									<span>
-										<i class="flaticon-selection"></i> 250sqft
-									</span>
-									<span class="ml-auto">
-										<i class="flaticon-bathtub"></i> 3
-									</span>
-									<span>
-										<i class="flaticon-bed"></i> 4
-									</span>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 ftco-animate">
-						<div class="properties">
-							<a href="property-single.html" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/properties-7.jpg);">
-								<div class="icon d-flex justify-content-center align-items-center">
-									<span class="icon-search2"></span>
-								</div>
-							</a>
-							<div class="text p-3">
-								<span class="status rent">Rent</span>
-								<div class="d-flex">
-									<div class="one">
-										<h3>
-											<a href="property-single.html">North Parchmore Street</a>
-										</h3>
-										<p>Apartment</p>
-									</div>
-									<div class="two">
-										<span class="price">
-											$899 <small>/ month</small>
+										<span>
+											<i class="flaticon-bed"></i>
+											<xsl:value-of select="caracteristicas/recamaras"/>
 										</span>
-									</div>
+									</p>
 								</div>
-								<p>Far far away, behind the word mountains, far from the countries</p>
-								<hr/>
-								<p class="bottom-area d-flex">
-									<span>
-										<i class="flaticon-selection"></i> 250sqft
-									</span>
-									<span class="ml-auto">
-										<i class="flaticon-bathtub"></i> 3
-									</span>
-									<span>
-										<i class="flaticon-bed"></i> 4
-									</span>
-								</p>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-4 ftco-animate">
-						<div class="properties">
-							<a href="property-single.html" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/properties-8.jpg);">
-								<div class="icon d-flex justify-content-center align-items-center">
-									<span class="icon-search2"></span>
-								</div>
-							</a>
-							<div class="text p-3">
-								<span class="status sale">Sale</span>
-								<div class="d-flex">
-									<div class="one">
-										<h3>
-											<a href="property-single.html">North Parchmore Street</a>
-										</h3>
-										<p>Apartment</p>
-									</div>
-									<div class="two">
-										<span class="price">$20,000</span>
-									</div>
-								</div>
-								<p>Far far away, behind the word mountains, far from the countries</p>
-								<hr/>
-								<p class="bottom-area d-flex">
-									<span>
-										<i class="flaticon-selection"></i> 250sqft
-									</span>
-									<span class="ml-auto">
-										<i class="flaticon-bathtub"></i> 3
-									</span>
-									<span>
-										<i class="flaticon-bed"></i> 4
-									</span>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 ftco-animate">
-						<div class="properties">
-							<a href="property-single.html" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/properties-9.jpg);">
-								<div class="icon d-flex justify-content-center align-items-center">
-									<span class="icon-search2"></span>
-								</div>
-							</a>
-							<div class="text p-3">
-								<span class="status sale">Sale</span>
-								<div class="d-flex">
-									<div class="one">
-										<h3>
-											<a href="property-single.html">North Parchmore Street</a>
-										</h3>
-										<p>Apartment</p>
-									</div>
-									<div class="two">
-										<span class="price">$20,000</span>
-									</div>
-								</div>
-								<p>Far far away, behind the word mountains, far from the countries</p>
-								<hr/>
-								<p class="bottom-area d-flex">
-									<span>
-										<i class="flaticon-selection"></i> 250sqft
-									</span>
-									<span class="ml-auto">
-										<i class="flaticon-bathtub"></i> 3
-									</span>
-									<span>
-										<i class="flaticon-bed"></i> 4
-									</span>
-								</p>
-							</div>
-						</div>
-					</div>
+
+					</xsl:for-each>
 				</div>
 				<div class="row mt-5">
 					<div class="col text-center">
@@ -1329,6 +751,7 @@
 				</div>
 			</div>
 		</section>
+
 	</xsl:template>
 
 	<xsl:template name="Agents">
@@ -1336,278 +759,49 @@
 		<section class="ftco-section bg-light">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-6 col-lg-3 ftco-animate">
-						<div class="staff">
-							<div class="img" style="background-image: url(images/person_1.jpg);"></div>
-							<div class="text pt-4">
-								<h3>
-									<a href="#">Edward Howard</a>
-								</h3>
-								<span class="position mb-2">4 Listing</span>
-								<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-								<ul class="ftco-social d-flex">
-									<li class="ftco-animate">
+					<xsl:for-each select="about/agentes/agente">
+						<div class="col-md-6 col-lg-3 ftco-animate">
+							<div class="staff">
+								<div class="img" style="background-image: url({Imagen});"></div>
+								<div class="text pt-4">
+									<h3>
 										<a href="#">
-											<span class="icon-twitter"></span>
+											<xsl:value-of select="nombre"/>
 										</a>
-									</li>
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-facebook"></span>
-										</a>
-									</li>
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-google-plus"></span>
-										</a>
-									</li>
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-instagram"></span>
-										</a>
-									</li>
-								</ul>
+									</h3>
+									<span class="position mb-2">
+										viviendas vendida: <xsl:value-of select="viviendasVendidas"/>
+									</span>
+									<p>
+										<xsl:value-of select="descripcion"/>
+									</p>
+									<ul class="ftco-social d-flex">
+										<li class="ftco-animate">
+											<a href="#">
+												<span class="icon-twitter"></span>
+											</a>
+										</li>
+										<li class="ftco-animate">
+											<a href="#">
+												<span class="icon-facebook"></span>
+											</a>
+										</li>
+										<li class="ftco-animate">
+											<a href="#">
+												<span class="icon-google-plus"></span>
+											</a>
+										</li>
+										<li class="ftco-animate">
+											<a href="#">
+												<span class="icon-instagram"></span>
+											</a>
+										</li>
+									</ul>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-6 col-lg-3 ftco-animate">
-						<div class="staff">
-							<div class="img" style="background-image: url(images/person_2.jpg);"></div>
-							<div class="text pt-4">
-								<h3>
-									<a href="#">Edward Howard</a>
-								</h3>
-								<span class="position mb-2">7 Listing</span>
-								<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-								<ul class="ftco-social d-flex">
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-twitter"></span>
-										</a>
-									</li>
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-facebook"></span>
-										</a>
-									</li>
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-google-plus"></span>
-										</a>
-									</li>
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-instagram"></span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-3 ftco-animate">
-						<div class="staff">
-							<div class="img" style="background-image: url(images/person_3.jpg);"></div>
-							<div class="text pt-4">
-								<h3>
-									<a href="#">Edward Howard</a>
-								</h3>
-								<span class="position mb-2">6 Listing</span>
-								<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-								<ul class="ftco-social d-flex">
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-twitter"></span>
-										</a>
-									</li>
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-facebook"></span>
-										</a>
-									</li>
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-google-plus"></span>
-										</a>
-									</li>
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-instagram"></span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-3 ftco-animate">
-						<div class="staff">
-							<div class="img" style="background-image: url(images/person_4.jpg);"></div>
-							<div class="text pt-4">
-								<h3>
-									<a href="#">Edward Howard</a>
-								</h3>
-								<span class="position mb-2">5 Listing</span>
-								<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-								<ul class="ftco-social d-flex">
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-twitter"></span>
-										</a>
-									</li>
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-facebook"></span>
-										</a>
-									</li>
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-google-plus"></span>
-										</a>
-									</li>
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-instagram"></span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-3 ftco-animate">
-						<div class="staff">
-							<div class="img" style="background-image: url(images/staff-1.jpg);"></div>
-							<div class="text pt-4">
-								<h3>
-									<a href="#">Edward Howard</a>
-								</h3>
-								<span class="position mb-2">8 Listing</span>
-								<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-								<ul class="ftco-social d-flex">
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-twitter"></span>
-										</a>
-									</li>
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-facebook"></span>
-										</a>
-									</li>
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-google-plus"></span>
-										</a>
-									</li>
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-instagram"></span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-3 ftco-animate">
-						<div class="staff">
-							<div class="img" style="background-image: url(images/staff-2.jpg);"></div>
-							<div class="text pt-4">
-								<h3>
-									<a href="#">Edward Howard</a>
-								</h3>
-								<span class="position mb-2">4 Listing</span>
-								<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-								<ul class="ftco-social d-flex">
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-twitter"></span>
-										</a>
-									</li>
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-facebook"></span>
-										</a>
-									</li>
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-google-plus"></span>
-										</a>
-									</li>
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-instagram"></span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-3 ftco-animate">
-						<div class="staff">
-							<div class="img" style="background-image: url(images/staff-3.jpg);"></div>
-							<div class="text pt-4">
-								<h3>
-									<a href="#">Edward Howard</a>
-								</h3>
-								<span class="position mb-2">5 Listing</span>
-								<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-								<ul class="ftco-social d-flex">
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-twitter"></span>
-										</a>
-									</li>
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-facebook"></span>
-										</a>
-									</li>
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-google-plus"></span>
-										</a>
-									</li>
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-instagram"></span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-3 ftco-animate">
-						<div class="staff">
-							<div class="img" style="background-image: url(images/staff-4.jpg);"></div>
-							<div class="text pt-4">
-								<h3>
-									<a href="#">Edward Howard</a>
-								</h3>
-								<span class="position mb-2">8 Listing</span>
-								<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-								<ul class="ftco-social d-flex">
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-twitter"></span>
-										</a>
-									</li>
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-facebook"></span>
-										</a>
-									</li>
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-google-plus"></span>
-										</a>
-									</li>
-									<li class="ftco-animate">
-										<a href="#">
-											<span class="icon-instagram"></span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
+
+					</xsl:for-each>
 				</div>
 				<div class="row mt-5">
 					<div class="col text-center">
@@ -1648,24 +842,29 @@
 		<section class="ftco-section ftc-no-pb">
 			<div class="container">
 				<div class="row no-gutters">
-					<div class="col-md-5 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/about.jpg);">
-						<a href="https://vimeo.com/45830194" class="icon popup-vimeo d-flex justify-content-center align-items-center">
+					<div class="col-md-5 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url({about/Imagen});">
+						<a href="{about/video}" class="icon popup-vimeo d-flex justify-content-center align-items-center">
 							<span class="icon-play"></span>
 						</a>
 					</div>
 					<div class="col-md-7 wrap-about pb-md-5 ftco-animate">
 						<div class="heading-section heading-section-wo-line mb-5 pl-md-5">
 							<div class="pl-md-5 ml-md-5">
-								<span class="subheading">Company Overview</span>
-								<h2 class="mb-4">Learned about the Law</h2>
+								<span class="subheading">
+									<xsl:value-of select="about/@nombre"/>
+								</span>
+								<h2 class="mb-4">
+									<xsl:value-of select="about/descripcion/@tipo"/>
+								</h2>
 							</div>
 						</div>
 						<div class="pl-md-5 ml-md-5 mb-5">
-							<p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their.</p>
-							<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
+							<p>
+								<xsl:value-of select="about/descripcion"/>
+							</p>
 							<p>
 								<a href="#" class="btn-custom">
-									Learn More <span class="ion-ios-arrow-forward"></span>
+									conoce mas <span class="ion-ios-arrow-forward"></span>
 								</a>
 							</p>
 						</div>
@@ -1678,44 +877,25 @@
 			<div class="container">
 				<div class="row justify-content-center mb-3 pb-3">
 					<div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
-						<h2 class="mb-4">Some fun facts</h2>
+						<h2 class="mb-4">Datos interesantes</h2>
 					</div>
 				</div>
 				<div class="row justify-content-center">
 					<div class="col-md-10">
 						<div class="row">
-							<div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
-								<div class="block-18 text-center">
-									<div class="text">
-										<strong class="number" data-number="9000">0</strong>
-										<span>Happy Customers</span>
+							<xsl:for-each select="about/estadisticas/estadistica">
+								<div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+									<div class="block-18 text-center">
+										<div class="text">
+											<strong class="number" data-number="{@cantidad}">0</strong>
+											<span>
+												<xsl:value-of select="@tipo"/>
+											</span>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
-								<div class="block-18 text-center">
-									<div class="text">
-										<strong class="number" data-number="10000">0</strong>
-										<span>Properties</span>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
-								<div class="block-18 text-center">
-									<div class="text">
-										<strong class="number" data-number="1000">0</strong>
-										<span>Agents</span>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
-								<div class="block-18 text-center">
-									<div class="text">
-										<strong class="number" data-number="100">0</strong>
-										<span>Awards</span>
-									</div>
-								</div>
-							</div>
+
+							</xsl:for-each>
 						</div>
 					</div>
 				</div>
@@ -1729,219 +909,38 @@
 		<section class="ftco-section bg-light">
 			<div class="container">
 				<div class="row d-flex">
-					
-					<!--Quiero redirigir a otro template para cada blog y que sea el template de ese blog seleccionado-->
-					
-					<!--<xsl:for-each select="blog/entrada">
-						<xsl:choose>
-							<xsl:when test="$TipoMenu = @Id">
-								<li class="nav-item active">
-									<a href="{@Url}" class="nav-link">
-										<xsl:value-of select="@Texto"/>
-									</a>
-								</li>
-							</xsl:when>
-							<xsl:otherwise>
-								<li class="nav-item">
-									<a href="{@Url}" class="nav-link">
-										<xsl:value-of select="@Texto"/>
-									</a>
-								</li>
-							</xsl:otherwise>
-						</xsl:choose>
-					</xsl:for-each>-->
-					<div class="col-md-3 d-flex ftco-animate">
-						<div class="blog-entry align-self-stretch">
-							<a href="blog-single.html" class="block-20" style="background-image: url('images/image_1.jpg');">
-							</a>
-							<div class="text mt-3 d-block">
-								<h3 class="heading mt-3">
-									<a href="#">Even the all-powerful Pointing has no control about the blind texts</a>
-								</h3>
-								<div class="meta mb-3">
-									<div>
-										<a href="#">Dec 6, 2018</a>
-									</div>
-									<div>
-										<a href="#">Admin</a>
-									</div>
-									<div>
-										<a href="#" class="meta-chat">
-											<span class="icon-chat"></span> 3
+					<xsl:for-each select="blog/entrada">
+						<div class="col-md-3 d-flex ftco-animate">
+							<div class="blog-entry align-self-stretch">
+								<a href="{@Url}" class="block-20" style="background-image: url({Imagen});">
+								</a>
+								<div class="text mt-3 d-block">
+									<h3 class="heading mt-3">
+										<a href="#">
+											<xsl:value-of select="titulo"/>
 										</a>
+									</h3>
+									<div class="meta mb-3">
+										<div>
+											<a href="#">
+												<xsl:value-of select="fechaPublicacion"/>
+											</a>
+										</div>
+										<div>
+											<a href="#"></a>
+										</div>
+										<div>
+											<a href="#" class="meta-chat">
+												<span class="icon-chat"></span>
+												<xsl:value-of select="numeroComentarios"/>
+											</a>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-3 d-flex ftco-animate">
-						<div class="blog-entry align-self-stretch">
-							<a href="blog-single.html" class="block-20" style="background-image: url('images/image_2.jpg');">
-							</a>
-							<div class="text mt-3">
-								<h3 class="heading mt-3">
-									<a href="#">Even the all-powerful Pointing has no control about the blind texts</a>
-								</h3>
-								<div class="meta mb-3">
-									<div>
-										<a href="#">Dec 6, 2018</a>
-									</div>
-									<div>
-										<a href="#">Admin</a>
-									</div>
-									<div>
-										<a href="#" class="meta-chat">
-											<span class="icon-chat"></span> 3
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 d-flex ftco-animate">
-						<div class="blog-entry align-self-stretch">
-							<a href="blog-single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
-							</a>
-							<div class="text mt-3">
-								<h3 class="heading mt-3">
-									<a href="#">Even the all-powerful Pointing has no control about the blind texts</a>
-								</h3>
-								<div class="meta mb-3">
-									<div>
-										<a href="#">Dec 6, 2018</a>
-									</div>
-									<div>
-										<a href="#">Admin</a>
-									</div>
-									<div>
-										<a href="#" class="meta-chat">
-											<span class="icon-chat"></span> 3
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 d-flex ftco-animate">
-						<div class="blog-entry align-self-stretch">
-							<a href="blog-single.html" class="block-20" style="background-image: url('images/image_4.jpg');">
-							</a>
-							<div class="text mt-3">
-								<h3 class="heading mt-3">
-									<a href="#">Even the all-powerful Pointing has no control about the blind texts</a>
-								</h3>
-								<div class="meta mb-3">
-									<div>
-										<a href="#">Dec 6, 2018</a>
-									</div>
-									<div>
-										<a href="#">Admin</a>
-									</div>
-									<div>
-										<a href="#" class="meta-chat">
-											<span class="icon-chat"></span> 3
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 d-flex ftco-animate">
-						<div class="blog-entry align-self-stretch">
-							<a href="blog-single.html" class="block-20" style="background-image: url('images/image_5.jpg');">
-							</a>
-							<div class="text mt-3 d-block">
-								<h3 class="heading mt-3">
-									<a href="#">Even the all-powerful Pointing has no control about the blind texts</a>
-								</h3>
-								<div class="meta mb-3">
-									<div>
-										<a href="#">Dec 6, 2018</a>
-									</div>
-									<div>
-										<a href="#">Admin</a>
-									</div>
-									<div>
-										<a href="#" class="meta-chat">
-											<span class="icon-chat"></span> 3
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 d-flex ftco-animate">
-						<div class="blog-entry align-self-stretch">
-							<a href="blog-single.html" class="block-20" style="background-image: url('images/image_6.jpg');">
-							</a>
-							<div class="text mt-3">
-								<h3 class="heading mt-3">
-									<a href="#">Even the all-powerful Pointing has no control about the blind texts</a>
-								</h3>
-								<div class="meta mb-3">
-									<div>
-										<a href="#">Dec 6, 2018</a>
-									</div>
-									<div>
-										<a href="#">Admin</a>
-									</div>
-									<div>
-										<a href="#" class="meta-chat">
-											<span class="icon-chat"></span> 3
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 d-flex ftco-animate">
-						<div class="blog-entry align-self-stretch">
-							<a href="blog-single.html" class="block-20" style="background-image: url('images/image_7.jpg');">
-							</a>
-							<div class="text mt-3">
-								<h3 class="heading mt-3">
-									<a href="#">Even the all-powerful Pointing has no control about the blind texts</a>
-								</h3>
-								<div class="meta mb-3">
-									<div>
-										<a href="#">Dec 6, 2018</a>
-									</div>
-									<div>
-										<a href="#">Admin</a>
-									</div>
-									<div>
-										<a href="#" class="meta-chat">
-											<span class="icon-chat"></span> 3
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 d-flex ftco-animate">
-						<div class="blog-entry align-self-stretch">
-							<a href="blog-single.html" class="block-20" style="background-image: url('images/image_8.jpg');">
-							</a>
-							<div class="text mt-3">
-								<h3 class="heading mt-3">
-									<a href="#">Even the all-powerful Pointing has no control about the blind texts</a>
-								</h3>
-								<div class="meta mb-3">
-									<div>
-										<a href="#">Dec 6, 2018</a>
-									</div>
-									<div>
-										<a href="#">Admin</a>
-									</div>
-									<div>
-										<a href="#" class="meta-chat">
-											<span class="icon-chat"></span> 3
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+
+					</xsl:for-each>
 				</div>
 				<div class="row mt-5">
 					<div class="col text-center">
@@ -1977,322 +976,305 @@
 
 	</xsl:template>
 
-	<xsl:template name="BlogSingle">
-		<section class="ftco-section ftco-degree-bg">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-8 ftco-animate">
-						<h2 class="mb-3">10 Tips For The Traveler</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora.</p>
-						<p>
-							<img src="images/image_7.jpg" alt="" class="img-fluid"/>
-            </p>
-						<p>Molestiae cupiditate inventore animi, maxime sapiente optio, illo est nemo veritatis repellat sunt doloribus nesciunt! Minima laborum magni reiciendis qui voluptate quisquam voluptatem soluta illo eum ullam incidunt rem assumenda eveniet eaque sequi deleniti tenetur dolore amet fugit perspiciatis ipsa, odit. Nesciunt dolor minima esse vero ut ea, repudiandae suscipit!</p>
-						<h2 class="mb-3 mt-5">#2. Creative WordPress Themes</h2>
-						<p>Temporibus ad error suscipit exercitationem hic molestiae totam obcaecati rerum, eius aut, in. Exercitationem atque quidem tempora maiores ex architecto voluptatum aut officia doloremque. Error dolore voluptas, omnis molestias odio dignissimos culpa ex earum nisi consequatur quos odit quasi repellat qui officiis reiciendis incidunt hic non? Debitis commodi aut, adipisci.</p>
-						<p>
-							<img src="images/image_8.jpg" alt="" class="img-fluid"/>
-            </p>
-						<p>Quisquam esse aliquam fuga distinctio, quidem delectus veritatis reiciendis. Nihil explicabo quod, est eos ipsum. Unde aut non tenetur tempore, nisi culpa voluptate maiores officiis quis vel ab consectetur suscipit veritatis nulla quos quia aspernatur perferendis, libero sint. Error, velit, porro. Deserunt minus, quibusdam iste enim veniam, modi rem maiores.</p>
-						<p>Odit voluptatibus, eveniet vel nihil cum ullam dolores laborum, quo velit commodi rerum eum quidem pariatur! Quia fuga iste tenetur, ipsa vel nisi in dolorum consequatur, veritatis porro explicabo soluta commodi libero voluptatem similique id quidem? Blanditiis voluptates aperiam non magni. Reprehenderit nobis odit inventore, quia laboriosam harum excepturi ea.</p>
-						<p>Adipisci vero culpa, eius nobis soluta. Dolore, maxime ullam ipsam quidem, dolor distinctio similique asperiores voluptas enim, exercitationem ratione aut adipisci modi quod quibusdam iusto, voluptates beatae iure nemo itaque laborum. Consequuntur et pariatur totam fuga eligendi vero dolorum provident. Voluptatibus, veritatis. Beatae numquam nam ab voluptatibus culpa, tenetur recusandae!</p>
-						<p>Voluptas dolores dignissimos dolorum temporibus, autem aliquam ducimus at officia adipisci quasi nemo a perspiciatis provident magni laboriosam repudiandae iure iusto commodi debitis est blanditiis alias laborum sint dolore. Dolores, iure, reprehenderit. Error provident, pariatur cupiditate soluta doloremque aut ratione. Harum voluptates mollitia illo minus praesentium, rerum ipsa debitis, inventore?</p>
-						<div class="tag-widget post-tag-container mb-5 mt-5">
-							<div class="tagcloud">
-								<a href="#" class="tag-cloud-link">Life</a>
-								<a href="#" class="tag-cloud-link">Sport</a>
-								<a href="#" class="tag-cloud-link">Tech</a>
-								<a href="#" class="tag-cloud-link">Travel</a>
-							</div>
-						</div>
+	<xsl:template name="VenAJugar">
 
-						<div class="about-author d-flex p-4 bg-light">
-							<div class="bio align-self-md-center mr-4">
-								<img src="images/person_1.jpg" alt="Image placeholder" class="img-fluid mb-4"/>
-              </div>
-							<div class="desc align-self-md-center">
-								<h3>Lance Smith</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
-							</div>
-						</div>
+		<!--Referencia CSS-->
+		<link href="assets/css/MiniJuego.css" rel="stylesheet"></link>
 
+		<!--Referencia JS-->
+		<script src="assets/js/MiniJuego.js"></script>
 
-						<div class="pt-5 mt-5">
-							<h3 class="mb-5">6 Comments</h3>
-							<ul class="comment-list">
-								<li class="comment">
-									<div class="vcard bio">
-										<img src="images/person_1.jpg" alt="Image placeholder"/>
-                  </div>
-									<div class="comment-body">
-										<h3>John Doe</h3>
-										<div class="meta">June 27, 2018 at 2:21pm</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-										<p>
-											<a href="#" class="reply">Reply</a>
-										</p>
-									</div>
-								</li>
+		<section class="ftco-section testimony-section bg-light">
+			<h2>Juego Inmobiliario - Arrastra las propiedades</h2>
 
-								<li class="comment">
-									<div class="vcard bio">
-										<img src="images/person_1.jpg" alt="Image placeholder"/>
-                  </div>
-									<div class="comment-body">
-										<h3>John Doe</h3>
-										<div class="meta">June 27, 2018 at 2:21pm</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-										<p>
-											<a href="#" class="reply">Reply</a>
-										</p>
-									</div>
+			<div class="contenedor">
+				<div id="casa1" class="propiedad" draggable="true">
+					<p>Casa en la playa</p>
+				</div>
 
-									<ul class="children">
-										<li class="comment">
-											<div class="vcard bio">
-												<img src="images/person_1.jpg" alt="Image placeholder"/>
-                      </div>
-											<div class="comment-body">
-												<h3>John Doe</h3>
-												<div class="meta">June 27, 2018 at 2:21pm</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-												<p>
-													<a href="#" class="reply">Reply</a>
-												</p>
-											</div>
+				<div id="apartamento1" class="propiedad" draggable="true">
+					<p>Apartamento céntrico</p>
+				</div>
 
+				<div id="casa2" class="propiedad" draggable="true">
+					<p>Casa en las montañas</p>
+				</div>
+			</div>
 
-											<ul class="children">
-												<li class="comment">
-													<div class="vcard bio">
-														<img src="images/person_1.jpg" alt="Image placeholder"/>
-                          </div>
-													<div class="comment-body">
-														<h3>John Doe</h3>
-														<div class="meta">June 27, 2018 at 2:21pm</div>
-														<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-														<p>
-															<a href="#" class="reply">Reply</a>
-														</p>
-													</div>
+			<div class="zonas">
+				<div id="en-venta" class="zona">
+					<h3>En Venta</h3>
+				</div>
 
-													<ul class="children">
-														<li class="comment">
-															<div class="vcard bio">
-																<img src="images/person_1.jpg" alt="Image placeholder"/>
-                                </div>
-															<div class="comment-body">
-																<h3>John Doe</h3>
-																<div class="meta">June 27, 2018 at 2:21pm</div>
-																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-																<p>
-																	<a href="#" class="reply">Reply</a>
-																</p>
-															</div>
-														</li>
-													</ul>
-												</li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-
-								<li class="comment">
-									<div class="vcard bio">
-										<img src="images/person_1.jpg" alt="Image placeholder"/>
-                  </div>
-									<div class="comment-body">
-										<h3>John Doe</h3>
-										<div class="meta">June 27, 2018 at 2:21pm</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-										<p>
-											<a href="#" class="reply">Reply</a>
-										</p>
-									</div>
-								</li>
-							</ul>
-							<!-- END comment-list -->
-
-							<div class="comment-form-wrap pt-5">
-								<h3 class="mb-5">Leave a comment</h3>
-								<form action="#" class="p-5 bg-light">
-									<div class="form-group">
-										<label for="name">Name *</label>
-										<input type="text" class="form-control" id="name"/>
-                  </div>
-									<div class="form-group">
-										<label for="email">Email *</label>
-										<input type="email" class="form-control" id="email"/>
-                  </div>
-									<div class="form-group">
-										<label for="website">Website</label>
-										<input type="url" class="form-control" id="website"/>
-                  </div>
-
-									<div class="form-group">
-										<label for="message">Message</label>
-										<textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
-									</div>
-									<div class="form-group">
-										<input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary"/>
-                  </div>
-
-								</form>
-							</div>
-						</div>
-
-					</div>
-					<!-- .col-md-8 -->
-					<div class="col-lg-4 sidebar ftco-animate">
-						<div class="sidebar-box">
-							<form action="#" class="search-form">
-								<div class="form-group">
-									<span class="icon fa fa-search"></span>
-									<input type="text" class="form-control" placeholder="Type a keyword and hit enter"/>
-                </div>
-							</form>
-						</div>
-						<div class="sidebar-box ftco-animate">
-							<div class="categories">
-								<h3>Categories</h3>
-								<li>
-									<a href="#">
-										Properties <span>(12)</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										Home <span>(22)</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										House <span>(37)</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										Villa <span>(42)</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										Apartment <span>(14)</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										Condominium <span>(140)</span>
-									</a>
-								</li>
-							</div>
-						</div>
-
-						<div class="sidebar-box ftco-animate">
-							<h3>Recent Blog</h3>
-							<div class="block-21 mb-4 d-flex">
-								<a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
-								<div class="text">
-									<h3 class="heading">
-										<a href="#">Even the all-powerful Pointing has no control about the blind texts</a>
-									</h3>
-									<div class="meta">
-										<div>
-											<a href="#">
-												<span class="icon-calendar"></span> July 12, 2018
-											</a>
-										</div>
-										<div>
-											<a href="#">
-												<span class="icon-person"></span> Admin
-											</a>
-										</div>
-										<div>
-											<a href="#">
-												<span class="icon-chat"></span> 19
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="block-21 mb-4 d-flex">
-								<a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
-								<div class="text">
-									<h3 class="heading">
-										<a href="#">Even the all-powerful Pointing has no control about the blind texts</a>
-									</h3>
-									<div class="meta">
-										<div>
-											<a href="#">
-												<span class="icon-calendar"></span> July 12, 2018
-											</a>
-										</div>
-										<div>
-											<a href="#">
-												<span class="icon-person"></span> Admin
-											</a>
-										</div>
-										<div>
-											<a href="#">
-												<span class="icon-chat"></span> 19
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="block-21 mb-4 d-flex">
-								<a class="blog-img mr-4" style="background-image: url(images/image_3.jpg);"></a>
-								<div class="text">
-									<h3 class="heading">
-										<a href="#">Even the all-powerful Pointing has no control about the blind texts</a>
-									</h3>
-									<div class="meta">
-										<div>
-											<a href="#">
-												<span class="icon-calendar"></span> July 12, 2018
-											</a>
-										</div>
-										<div>
-											<a href="#">
-												<span class="icon-person"></span> Admin
-											</a>
-										</div>
-										<div>
-											<a href="#">
-												<span class="icon-chat"></span> 19
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="sidebar-box ftco-animate">
-							<h3>Tag Cloud</h3>
-							<div class="tagcloud">
-								<a href="#" class="tag-cloud-link">dish</a>
-								<a href="#" class="tag-cloud-link">menu</a>
-								<a href="#" class="tag-cloud-link">food</a>
-								<a href="#" class="tag-cloud-link">sweet</a>
-								<a href="#" class="tag-cloud-link">tasty</a>
-								<a href="#" class="tag-cloud-link">delicious</a>
-								<a href="#" class="tag-cloud-link">desserts</a>
-								<a href="#" class="tag-cloud-link">drinks</a>
-							</div>
-						</div>
-
-						<div class="sidebar-box ftco-animate">
-							<h3>Paragraph</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
-						</div>
-					</div>
-
+				<div id="vendidas" class="zona">
+					<h3>Vendidas</h3>
 				</div>
 			</div>
 		</section>
-		<!-- .section -->
+
+		<!--<section class="ftco-section testimony-section bg-light">
+			<h2>Ordena los tipos de vivienda</h2>
+			<div id="Viviendas">
+				<div class="casa"></div>
+				<div class="departamento"></div>
+				<div class="cuarto"></div>
+				<div class="casa"></div>
+				<div class="cuarto"></div>
+				<div class="departamento"></div>
+				<div class="casa"></div>
+				<div class="departamento"></div>
+				<div class="cuarto"></div>
+			</div>
+			<div id="departamento"></div>
+			<div id="cuarto"></div>
+			<div id="casa"></div>
+		</section>-->
 
 	</xsl:template>
 
+	<xsl:template name="VideoAudio">
+		<section class="ftco-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8">
+						<div class="row">
+							<div class="col-md-12 ftco-animate">
+
+								<div class="single-slider owl-carousel">
+									<xsl:for-each select="propiedades/propiedadVip/caracteristicas/Imagen">
+										<div class="item">
+											<!--pendiente-->
+											<div class="properties-img" style="background-image: url({@Imagen});"></div>
+										</div>
+
+									</xsl:for-each>
+								</div>
+
+								<div id="Audio" style="width:100%">
+									<audio controls="true" style="width:100%" autoplay="autoplay">
+										<source src="assets/audio/videoplayback.m4a"></source>
+									</audio>
+								</div>
+							</div>
+							<div class="col-md-12 Properties-single mt-4 mb-5 ftco-animate">
+
+								<h2>
+									<xsl:value-of select="propiedades/propiedadVip/nombre"/>
+								</h2>
+								<p class="rate mb-4">
+									<span class="loc">
+										<a href="#">
+											<i class="icon-map"></i>
+											<xsl:value-of select="propiedades/propiedadVip/ciudad"/>
+										</a>
+									</span>
+								</p>
+								<p>
+									<xsl:value-of select="propiedades/propiedadVip/descripcionCompleta/descripcion[@num=1]"/>
+								</p>
+								<div class="d-md-flex mt-5 mb-5">
+									<ul>
+										<li>
+											<span>Recamaras: </span>
+											<xsl:value-of select="propiedades/propiedadVip/caracteristicas/recamaras"/>
+										</li>
+										<li>
+											<span>Estudio: </span>
+											<xsl:value-of select="propiedades/propiedadVip/caracteristicas/cuartoEstudio"/>
+										</li>
+										<li>
+											<span>Garage: </span>
+											<xsl:value-of select="propiedades/propiedadVip/caracteristicas/garage"/>
+										</li>
+									</ul>
+									<ul class="ml-md-5">
+										<li>
+											<span>Año: </span>
+											<xsl:value-of select="propiedades/propiedadVip/caracteristicas/fechaconstruccion"/>
+										</li>
+										<li>
+											<span>Estado: </span>
+											<xsl:value-of select="propiedades/propiedadVip/@estado"/>
+										</li>
+									</ul>
+								</div>
+								<p>
+									<xsl:value-of select="propiedades/propiedadVip/descripcionCompleta/descripcion[@num=2]"/>
+								</p>
+							</div>
+							<div class="col-md-12 properties-single ftco-animate ">
+								<div class="block-16">
+									<section class="tm-section-row ">
+										<h2>Video</h2>
+										<div id="Video" style="width:100%">
+											<video controls="true" width="100%" poster="images/properties-2.jpg">
+												<source src="assets/video/casa.mp4"></source>
+											</video>
+										</div>
+										<br></br>
+										<br></br>
+									</section>
+								</div>
+							</div>
+
+							<div class="col-md-12 properties-single ftco-animate mb-5 mt-5">
+								<h4 class="mb-4">Propiedades relacionadas</h4>
+								<div class="row">
+									<xsl:for-each select="propiedades/propiedad[@tipo='departamento']">
+										<div class="col-md-6 ftco-animate">
+											<div class="properties">
+												<a href="property-single.html" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url({./caracteristicas/Imagen});">
+													<div class="icon d-flex justify-content-center align-items-center">
+														<span class="icon-search2"></span>
+													</div>
+												</a>
+												<div class="text p-3">
+													<span class="status sale">
+														<xsl:value-of select="@estado"/>
+													</span>
+													<div class="d-flex">
+														<div class="one">
+															<h3>
+																<a href="#">
+																	<xsl:value-of select="ciudad"/>
+																</a>
+															</h3>
+															<p>
+																<xsl:value-of select="@tipo"/>
+															</p>
+														</div>
+														<div class="two">
+															<span class="price">
+																<xsl:value-of select="precio"/>
+															</span>
+														</div>
+													</div>
+													<hr/>
+													<p class="bottom-area d-flex">
+														<span class="ml-auto">
+															<i class="flaticon-bathtub"></i>
+															<xsl:value-of select="caracteristicas/banos"/>
+														</span>
+														<span>
+															<i class="flaticon-bed"></i>
+															<xsl:value-of select="caracteristicas/recamaras"/>
+														</span>
+													</p>
+												</div>
+											</div>
+										</div>
+
+									</xsl:for-each>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!-- .col-md-8 -->
+					<div class="col-lg-4 sidebar ftco-animate">
+
+						<div class="sidebar-box ftco-animate">
+							<h3>Blog recieten</h3>
+
+							<xsl:for-each select="blog/entrada">
+								<div class="block-21 mb-4 d-flex">
+									<a class="blog-img mr-4" style="background-image: url({Imagen});"></a>
+									<div class="text">
+										<h3 class="heading">
+											<a href="#">
+												<xsl:value-of select="titulo"/>
+											</a>
+										</h3>
+										<div class="meta">
+											<div>
+												<a href="#">
+													<span class="icon-calendar"></span>
+													<xsl:value-of select="fechaPublicacion"/>
+												</a>
+											</div>
+											<div>
+												<a href="#">
+													<span class="icon-person"></span> Admin
+												</a>
+											</div>
+											<div>
+												<a href="#">
+													<span class="icon-chat"></span> comentarios:
+													<xsl:value-of select="numeroComentarios"/>
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</xsl:for-each>
+						</div>
+
+						<div class="sidebar-box ftco-animate">
+							<h3>Mision</h3>
+							<p>
+								<xsl:value-of select="about/descripcion"/>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</xsl:template>
+
+	<xsl:template name="Ubicacion">
+
+		<!--API de Google-->
+		<script>
+			// Definir la función initMap globalmente
+			function initMap() {
+			// Asegúrate de que aquí inicializas el mapa correctamente
+			const mapOptions = {
+			center: { lat: 20.73143795405191, lng: -100.2846673071275 },  // Cambia estas coordenadas por las deseadas
+			zoom: 20
+			};
+			const map = new google.maps.Map(document.getElementById('map'), mapOptions);
+			}
+		</script>
+
+		<script>
+			<![CDATA[
+			(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+			key: "AIzaSyCWeeateTaYGqsHhNcmoDfT7Us-vLDZVPs",
+			// Add other bootstrap parameters as needed, using camel case.
+			// Use the 'v' parameter to indicate the version to load (alpha, beta, weekly, etc.)
+			});]]>
+		</script>
+
+		<!--Referencia a mi archivo JS-->
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWeeateTaYGqsHhNcmoDfT7Us-vLDZVPs&amp;callback=initMap"
+				async="" defer=""></script>
+
+
+		<!--Mis scripts personalizados-->
+		<script src="assets/js/MiScript.js" type="text/javascript"></script>
+		<script src="assets/js/google.js" type="module"></script>
+
+		<section class="ftco-section">
+			<!--Mapa-->
+			<div data-aos="fade-up">
+				<style>
+					#map{
+					border:0;
+					width:100%;
+					height: 350px;
+					}
+
+				</style>
+				<div id="google-map">
+					<div id="map"></div>
+				</div>
+				<text id="direccion"> Esta es una etiqueta de texto</text>
+				<h2>Para ver el StreetView arrastre el mono naranja</h2>
+				<div class="col-lg-12 margin-bottom-30" id="street" style="height:400px; width:100%"></div>
+			</div>
+		</section>
+		
+	</xsl:template>
 
 </xsl:stylesheet>

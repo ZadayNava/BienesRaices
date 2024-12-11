@@ -67,7 +67,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\audio\videoplayback.m4a" />
+    <Content Include="assets\css\MiniJuego.css" />
     <Content Include="assets\img\Agente3.jpeg" />
+    <Content Include="assets\img\Blog1.jpeg" />
+    <Content Include="assets\img\Blog2.jpg" />
+    <Content Include="assets\img\Blog3.jpg" />
+    <Content Include="assets\js\google.js" />
+    <Content Include="assets\js\MiniJuego.js" />
+    <Content Include="assets\video\casa.mp4" />
     <Content Include="css\ajax-loader.gif" />
     <Content Include="css\animate.css" />
     <Content Include="css\aos.css" />
@@ -126,9 +134,6 @@
     <Content Include="assets\img\Agente2.jpg" />
     <Content Include="assets\img\Agente4.jpg" />
     <Content Include="assets\img\Agente5.jpg" />
-    <Content Include="assets\img\Blog1.jpg" />
-    <Content Include="assets\img\Blog2.png" />
-    <Content Include="assets\img\Blog3.jpeg" />
     <Content Include="assets\img\Propiedad1.jpg" />
     <Content Include="assets\img\Propiedad2.jpg" />
     <Content Include="assets\img\Propiedad3.jpeg" />
@@ -296,7 +301,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="assets\video\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>

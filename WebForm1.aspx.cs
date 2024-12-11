@@ -10,18 +10,19 @@ namespace BienesRaices
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        public string tipoMenu = string.Empty;
+        public string nav = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
-            Label1.Text = "Hola desde el codeBehide";
+            //Label1.Text = "Hola desde el codeBehide";
+
             //es la respuesta de una peticion
             if (Request.QueryString["Id"] == null)
             {
-                tipoMenu = "0";
+                nav = "0";
             }
             else
             {
-                tipoMenu = Request.QueryString["Id"];
+                nav = Request.QueryString["Id"];
             }
             TransformarXML();
 
@@ -49,7 +50,7 @@ namespace BienesRaices
             TextWriter textWriter = new StringWriter(stringBuilder);
 
             XsltArgumentList xsltArgumentList = new XsltArgumentList();
-            xsltArgumentList.AddParam("TipoMenu", "", tipoMenu);
+            xsltArgumentList.AddParam("Nav", "", nav);
 
             xslt.Transform(xmTextReader, xsltArgumentList, textWriter);
 

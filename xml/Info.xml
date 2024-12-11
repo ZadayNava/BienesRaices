@@ -7,96 +7,62 @@
 		<Opcion Url="/WebForm1.aspx?Id=3" Texto="About" Id="3"></Opcion>
 		<Opcion Url="/WebForm1.aspx?Id=4" Texto="Blog" Id="4"></Opcion>
 	</Opciones>
-    <about nombre="BR-Excelentes">
-        <descripcion tipo="misión">Somos una empresa líder en bienes raíces, comprometida con la excelencia y la satisfacción del cliente.</descripcion>
-        <estadisticas>
-            <clientesSatisfechos unidades="personas">2000</clientesSatisfechos>
-            <propiedadesVendidas unidades="propiedades">500</propiedadesVendidas>
-            <numeroAwards unidades="premios">15</numeroAwards>
-        </estadisticas>
-        <agentes total="5">
-            <agente id="1" disponible="sí">
+	<about nombre="BR-Excelentes">
+		<descripcion tipo="misión">Somos una empresa líder en bienes raíces, comprometida con la excelencia y la satisfacción del cliente.</descripcion>
+		<estadisticas>
+			<estadistica tipo="Clientes Satisfechos" cantidad="2000">personas</estadistica>
+			<estadistica tipo="P ropiedades Vendidas"  cantidad="500">propiedades</estadistica>
+			<estadistica tipo="Numero Awards" cantidad="15">premios</estadistica>
+		</estadisticas>
+		<Imagen>../assets/img/Propiedad4.jpeg</Imagen>
+		<video>../assets/video/casa.mp4</video>
+		<agentes total="5">
+			<agente id="1" disponible="sí">
 				<nombre>Carlos Pérez</nombre>
 				<descripcion personalidad="Detallista">Amplio conocimiento del mercado urbano y trato personalizado.</descripcion>
-				<Imagen>assets/img/Agente2.jpg</Imagen>
+				<Imagen>../assets/img/Agente1.jpg</Imagen>
 				<viviendasVendidas unidades="propiedades">95</viviendasVendidas>
-            </agente>
-            <agente id="2" disponible="no">
+			</agente>
+			<agente id="2" disponible="no">
 				<nombre>Ana López</nombre>
 				<descripcion personalidad="Extrovertida">Especialista en bienes raíces de lujo con gran orientación al cliente.</descripcion>
-				<Imagen>assets/img/Agente1.jpg</Imagen>
+				<Imagen>../assets/img/Agente2.jpg</Imagen>
 				<viviendasVendidas unidades="propiedades">120</viviendasVendidas>
-            </agente>
-            <agente id="3" disponible="sí">
-                <nombre>María Antonieta de las nieves</nombre>
-                <descripcion personalidad="Dinámica">Excelente negociadora y entusiasta en la búsqueda de soluciones para los clientes.</descripcion>
-				<Imagen>assets/img/Agente3.jpg</Imagen>
-                <viviendasVendidas unidades="propiedades">140</viviendasVendidas>
-            </agente>
+			</agente>
+			<agente id="3" disponible="sí">
+				<nombre>María Antonieta de las nieves</nombre>
+				<descripcion personalidad="Dinámica">Excelente negociadora y entusiasta en la búsqueda de soluciones para los clientes.</descripcion>
+				<Imagen>../assets/img/Agente3.jpeg</Imagen>
+				<viviendasVendidas unidades="propiedades">140</viviendasVendidas>
+			</agente>
 			<agente id="4" disponible="no">
 				<nombre>Mario García</nombre>
 				<descripcion personalidad="Simpatico">Excelente negociador y entusiasta en la búsqueda de soluciones para los clientes.</descripcion>
-				<Imagen>assets/img/Agente4.jpg</Imagen>
+				<Imagen>../assets/img/Agente4.jpg</Imagen>
 				<viviendasVendidas unidades="propiedades">100</viviendasVendidas>
 			</agente>
 			<agente id="5" disponible="sí">
 				<nombre>Chavelo García</nombre>
 				<descripcion personalidad="Directo">Excelente negociadora y entusiasta en la búsqueda de soluciones para los clientes.</descripcion>
-				<Imagen>assets/img/Agente5.jpg</Imagen>
+				<Imagen>../assets/img/Agente5.jpg</Imagen>
 				<viviendasVendidas unidades="propiedades">180</viviendasVendidas>
 			</agente>
-        </agentes>
-    </about>
-    <propiedades total="7">
-        <propiedad id="P1" tipo="casa" estado="venta">
-            <nombre>Habitacion en Polanco</nombre>
-            <descripcionCompleta estado="disponible">Un lugar moderno con balcon privado, terraza y diseño minimalista.</descripcionCompleta>
-            <precio moneda="MXN">$5,000,000</precio>
-            <ciudad>Ciudad de México</ciudad>
-            <caracteristicas>
-                <recamaras unidades="habitaciones">4</recamaras>
-                <banos unidades="baños">3</banos>
-                <cuartoEstudio disponible="sí">sí</cuartoEstudio>
-				<Imagen>assets/img/Propiedad1.jpg</Imagen>
-            </caracteristicas>
-        </propiedad>
-        <propiedad id="P2" tipo="departamento" estado="renta">
-            <nombre>Departamento en Condesa</nombre>
-            <descripcionCompleta estado="disponible">Departamento amplio con balcón y una hermosa vista al parque.</descripcionCompleta>
-            <precio moneda="MXN">$25,000</precio>
-            <ciudad>Ciudad de México</ciudad>
-            <caracteristicas>
-                <recamaras unidades="habitaciones">2</recamaras>
-                <banos unidades="baños">2</banos>
-                <cuartoEstudio disponible="no">no</cuartoEstudio>
-				<Imagen>assets/img/Propiedad2.jpg</Imagen>
-            </caracteristicas>
-        </propiedad>
-        <propiedad id="P3" tipo="terreno" estado="venta">
-            <nombre>Terreno en Valle de Bravo</nombre>
-            <descripcionCompleta estado="disponible">Terreno ideal para construir una casa de descanso rodeada de naturaleza.</descripcionCompleta>
-            <precio moneda="MXN">$3,000,000</precio>
-            <ciudad>Valle de Bravo</ciudad>
-            <caracteristicas>
-                <recamaras unidades="habitaciones">0</recamaras>
-                <banos unidades="baños">0</banos>
-                <cuartoEstudio disponible="no">no</cuartoEstudio>
-				<Imagen>assets/img/Propiedad3.jpeg</Imagen>
-            </caracteristicas>
-        </propiedad>
-		<propiedad id="P4" tipo="casa" estado="venta">
-			<nombre>Casa Moderna</nombre>
-			<descripcionCompleta estado="disponible">Una casa moderna con jardín privado, terraza y diseño minimalista.</descripcionCompleta>
-			<precio moneda="MXN">$50,000,000</precio>
-			<ciudad>Monterrey</ciudad>
+		</agentes>
+	</about>
+	<propiedades total="8">
+		<propiedad id="P1" tipo="departamento" estado="venta" >
+			<nombre>Habitacion en Polanco</nombre>
+			<descripcionCompleta estado="disponible">Un lugar moderno con balcon privado, terraza y diseño minimalista.</descripcionCompleta>
+			<precio moneda="MXN">$5,000</precio>
+			<ciudad>Ciudad de México</ciudad>
 			<caracteristicas>
 				<recamaras unidades="habitaciones">4</recamaras>
 				<banos unidades="baños">3</banos>
 				<cuartoEstudio disponible="sí">sí</cuartoEstudio>
-				<Imagen>assets/img/Propiedad4.jpeg</Imagen>
+				<Imagen>../assets/img/Propiedad1.jpg</Imagen>
 			</caracteristicas>
 		</propiedad>
-		<propiedad id="P5" tipo="departamento" estado="renta">
+		<propiedad id="P2" tipo="departamento" estado="renta" >
 			<nombre>Departamento en Condesa</nombre>
 			<descripcionCompleta estado="disponible">Departamento amplio con balcón y una hermosa vista al parque.</descripcionCompleta>
 			<precio moneda="MXN">$25,000</precio>
@@ -105,53 +71,116 @@
 				<recamaras unidades="habitaciones">2</recamaras>
 				<banos unidades="baños">2</banos>
 				<cuartoEstudio disponible="no">no</cuartoEstudio>
-				<Imagen>assets/img/Propiedad5.jpeg</Imagen>
+				<Imagen>../assets/img/Propiedad2.jpg</Imagen>
 			</caracteristicas>
 		</propiedad>
-		<propiedad id="P6" tipo="terreno" estado="venta">
+		<propiedad id="P3" tipo="cuartos" estado="venta" >
 			<nombre>Terreno en Valle de Bravo</nombre>
 			<descripcionCompleta estado="disponible">Terreno ideal para construir una casa de descanso rodeada de naturaleza.</descripcionCompleta>
-			<precio moneda="MXN">$3,000,000</precio>
+			<precio moneda="MXN">$3,000</precio>
+			<ciudad>Valle de Bravo</ciudad>
+			<caracteristicas>
+				<recamaras unidades="habitaciones">1</recamaras>
+				<banos unidades="baños">1</banos>
+				<cuartoEstudio disponible="no">no</cuartoEstudio>
+				<calificacion>5</calificacion>
+				<Imagen>../assets/img/Propiedad3.jpeg</Imagen>
+			</caracteristicas>
+		</propiedad>
+		<propiedad id="P4" tipo="casa" estado="venta">
+			<nombre>Casa Moderna</nombre>
+			<descripcionCompleta estado="disponible">Una casa moderna con jardín privado, terraza y diseño minimalista.</descripcionCompleta>
+			<precio moneda="MXN">$50,000</precio>
+			<ciudad>Monterrey</ciudad>
+			<caracteristicas>
+				<recamaras unidades="habitaciones">4</recamaras>
+				<banos unidades="baños">3</banos>
+				<cuartoEstudio disponible="sí">sí</cuartoEstudio>
+				<Imagen>../assets/img/Propiedad4.jpeg</Imagen>
+			</caracteristicas>
+		</propiedad>
+		<propiedad id="P5" tipo="casa" estado="Rent">
+			<nombre>Casa en Condesa</nombre>
+			<descripcionCompleta estado="disponible">Departamento amplio con balcón y una hermosa vista al parque.</descripcionCompleta>
+			<precio moneda="MXN">$25,000</precio>
+			<ciudad>Ciudad de México</ciudad>
+			<caracteristicas>
+				<recamaras unidades="habitaciones">4</recamaras>
+				<banos unidades="baños">2</banos>
+				<cuartoEstudio disponible="no">no</cuartoEstudio>
+				<calificacion>5</calificacion>
+				<Imagen>../assets/img/Propiedad5.jpg</Imagen>
+			</caracteristicas>
+		</propiedad>
+		<propiedad id="P6" tipo="departamento" estado="venta">
+			<nombre>Terreno en Valle de Bravo</nombre>
+			<descripcionCompleta estado="disponible">Terreno ideal para construir una casa de descanso rodeada de naturaleza.</descripcionCompleta>
+			<precio moneda="MXN">$3,000</precio>
 			<ciudad>Valle de Bravo</ciudad>
 			<caracteristicas>
 				<recamaras unidades="habitaciones">0</recamaras>
 				<banos unidades="baños">0</banos>
 				<cuartoEstudio disponible="no">no</cuartoEstudio>
-				<Imagen>assets/img/Propiedad6.jpeg</Imagen>
+				<Imagen>../assets/img/Propiedad6.jpeg</Imagen>
 			</caracteristicas>
 		</propiedad>
 		<propiedad id="P7" tipo="casa" estado="venta">
 			<nombre>Penthouse</nombre>
 			<descripcionCompleta estado="disponible">Un penthouse moderno, terraza y diseño minimalista.</descripcionCompleta>
-			<precio moneda="MXN">$80,000,000</precio>
+			<precio moneda="MXN">$80,000</precio>
 			<ciudad>Zacatlan</ciudad>
 			<caracteristicas>
 				<recamaras unidades="habitaciones">4</recamaras>
 				<banos unidades="baños">3</banos>
 				<cuartoEstudio disponible="sí">sí</cuartoEstudio>
-				<Imagen>assets/img/Propiedad7.jpeg</Imagen>
+				<calificacion>5</calificacion>
+				<Imagen>../assets/img/Propiedad7.jpeg</Imagen>
 			</caracteristicas>
 		</propiedad>
-    </propiedades>
-    <blog totalEntradas="3">
-        <entrada name="B1" Url="/WebForm1.aspx?Id=5" Texto="BlogSingle" Id="5">
-            <titulo>Consejos para comprar tu primera casa</titulo>
-            <fechaPublicacion formato="YYYY-MM-DD">2024-12-01</fechaPublicacion>
-            <numeroComentarios unidades="comentarios">15</numeroComentarios>
-			<Imagen>assets/img/huevos.jpg</Imagen>
-        </entrada>
-        <entrada name="B2" Url="/WebForm1.aspx?Id=5" Texto="BlogSingle" Id="5">
-            <titulo>Las mejores colonias para vivir en CDMX</titulo>
-            <fechaPublicacion formato="YYYY-MM-DD">2024-11-20</fechaPublicacion>
-            <numeroComentarios unidades="comentarios">25</numeroComentarios>
-			<Imagen>assets/img/huevos.jpg</Imagen>
+		<propiedadVip id="P8" tipo="casa" estado="venta">
+			<nombre>Penthouse</nombre>
+			<descripcionCompleta estado="disponible">
+				<descripcion num="1">
+					Cuenta con sala, comedor con cocina concepto abierto, medio baño de visitas, amplia terraza cubierta con salida a sala comedor y a la recámara principal con hermosas vistas desde el primer nivel. Además de tres recámaras con vestidor y baño completo perfectamente funcionales para disfrutar con tú familia, ofrece también cuarto de servicio con baño completo y cuarto de lavado, así como elevador, dos cajones en estacionamiento techado y bodega.
+				</descripcion>
+				<descripcion num="2">
+					Vive en una torre exclusiva con lobby y vigilancia las 24 horas, con ubicación estratégica cercana a todos los servicios y principales plazas comerciales así como vialidades de la ciudad, con sólo dos departamentos por nivel con dos elevadores, bodega para cada departamento,disfruta momentos inolvidables con familia y amigos al aire libre en nuestro Roof Garden equipado con asadores, un Gimnasio equipado con máquinas de primera generación.
+				</descripcion>
+			</descripcionCompleta>
+			<precio moneda="MXN">$800,000</precio>
+			<ciudad>Zacatlan de las manzanas</ciudad>
+			<caracteristicas>
+				<recamaras unidades="habitaciones">4</recamaras>
+				<banos unidades="baños">3</banos>
+				<garage unidades="baños">3</garage>
+				<fechaconstruccion unidades="año">2024</fechaconstruccion>
+				<cuartoEstudio disponible="sí">sí</cuartoEstudio>
+				<calificacion>5</calificacion>
+				<Imagen>imagenes/properties-3.jpg</Imagen>
+				<Imagen>imagenes/properties-9.jpg</Imagen>
+				<Imagen>imagenes/properties-2.jpg</Imagen>
+			</caracteristicas>
+		</propiedadVip>
+	</propiedades>
+	<blog totalEntradas="3">
+		<entrada name="B1" Url="/WebForm1.aspx?Id=5" Texto="VenAJugar" Id="5">
+			<titulo>Un juego para el desestres del trabajo</titulo>
+			<fechaPublicacion formato="YYYY-MM-DD">2024-12-01</fechaPublicacion>
+			<numeroComentarios unidades="comentarios">15</numeroComentarios>
+			<Imagen>../assets/img/Blog1.jpeg</Imagen>
 		</entrada>
-		<entrada name="B3" Url="/WebForm1.aspx?Id=5" Texto="BlogSingle" Id="5">
-			<titulo>¿Rentar o comprar? Pros y contras</titulo>
+		<entrada name="B2" Url="/WebForm1.aspx?Id=6" Texto="VideoAudio" Id="6">
+			<titulo>Un video y audio de informacion!</titulo>
+			<fechaPublicacion formato="YYYY-MM-DD">2024-11-20</fechaPublicacion>
+			<numeroComentarios unidades="comentarios">25</numeroComentarios>
+			<Imagen>../assets/img/Blog2.jpg</Imagen>
+		</entrada>
+		<entrada name="B3" Url="/WebForm1.aspx?Id=7" Texto="Ubicacion" Id="7">
+			<titulo>Encuentranos aqui! Estamos en tu corazon </titulo>
 			<fechaPublicacion formato="YYYY-MM-DD">2024-10-15</fechaPublicacion>
 			<numeroComentarios unidades="comentarios">30</numeroComentarios>
-			<Imagen>assets/img/huevos.jpg</Imagen>
-        </entrada>
-    </blog>
-	
+			<Imagen>../assets/img/Blog3.jpg</Imagen>
+		</entrada>
+	</blog>
+
 </inmobiliaria>
