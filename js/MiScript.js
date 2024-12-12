@@ -1,8 +1,7 @@
-﻿console.log("Paso");
-
-/*const miBoton = document.querySelector('#miBoton').value;
-
-console.log("Mi boton regresa: "+miBoton);*/
-function Miformulario() {
-    console.log("ok");
-}
+﻿document.addEventListener('DOMContentLoaded', () => {
+    console.log("Entro a js");
+    /*let miboton = document.addEventListener(getElementById("miBoton"));
+    if (miBoton) {
+        console.log("mi boton");
+    }*/
+});

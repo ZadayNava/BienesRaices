@@ -494,8 +494,10 @@
 	<xsl:template name="Property">
 
 
+		<script src="js/MiScript.js" type="text/javascript"></script>
+
+
 		<section class="ftco-search">
-			<script src="js/MiScript.js" type="text/javascript"></script>
 
 			<div class="container">
 				<div class="row">
@@ -981,37 +983,15 @@
 		<!--Referencia CSS-->
 		<link href="assets/css/MiniJuego.css" rel="stylesheet"></link>
 
-		<!--Referencia JS-->
-		<script src="assets/js/MiniJuego.js"></script>
 
 		<section class="ftco-section testimony-section bg-light">
-			<h2>Juego Inmobiliario - Arrastra las propiedades</h2>
+			<h2>Juego Inmobiliario - Ordena los agentes de acuerdo a tu interes</h2>
 
-			<div class="contenedor">
-				<div id="casa1" class="propiedad" draggable="true">
-					<p>Casa en la playa</p>
-				</div>
-
-				<div id="apartamento1" class="propiedad" draggable="true">
-					<p>Apartamento céntrico</p>
-				</div>
-
-				<div id="casa2" class="propiedad" draggable="true">
-					<p>Casa en las montañas</p>
-				</div>
-			</div>
-
-			<div class="zonas">
-				<div id="en-venta" class="zona">
-					<h3>En Venta</h3>
-				</div>
-
-				<div id="vendidas" class="zona">
-					<h3>Vendidas</h3>
-				</div>
-			</div>
+				<ul id="list"></ul>
 		</section>
 
+		<!--Referencia JS-->
+		<script src="assets/js/MiniJuego.js"></script>
 		<!--<section class="ftco-section testimony-section bg-light">
 			<h2>Ordena los tipos de vivienda</h2>
 			<div id="Viviendas">
@@ -1274,7 +1254,7 @@
 				<div class="col-lg-12 margin-bottom-30" id="street" style="height:400px; width:100%"></div>
 			</div>
 		</section>
-		
+
 	</xsl:template>
 
 </xsl:stylesheet>

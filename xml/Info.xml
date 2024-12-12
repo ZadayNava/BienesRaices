@@ -49,6 +49,7 @@
 			</agente>
 		</agentes>
 	</about>
+	
 	<propiedades total="8">
 		<propiedad id="P1" tipo="departamento" estado="venta" >
 			<nombre>Habitacion en Polanco</nombre>
@@ -182,5 +183,4 @@
 			<Imagen>../assets/img/Blog3.jpg</Imagen>
 		</entrada>
 	</blog>
-
 </inmobiliaria>
