@@ -104,6 +104,18 @@
 				</nav>
 				<!-- END nav -->
 
+				<section class="ftco-search" style="display: grid; align-content: center; justify-content: center; font-family: monospace;">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12 search-wrap">
+								<h1>¡Bienvenido a mi página!</h1>
+								<h4>El sigueinte mensaje usa js, de acuerdo a la hora del dia :)</h4>
+								<p id="greeting"></p>
+							</div>
+						</div>
+					</div>
+				</section>
+
 				<section class="home-slider owl-carousel">
 					<xsl:for-each select="propiedades/propiedad[@tipo = 'casa']">
 						<div class="slider-item" style="background-image: url({caracteristicas/Imagen});">
@@ -300,8 +312,11 @@
 				<script src="js/jquery.timepicker.min.js"></script>
 				<script src="js/scrollax.min.js"></script>
 				<script src="js/main.js"></script>
+				<script src="js/MiScript.js"></script>
 				<!-- End Scripts-->
 
+				// Ejecutar la función al cargar la página
+				showGreeting();
 
 			</body>
 		</html>
@@ -492,183 +507,6 @@
 	</xsl:template>
 
 	<xsl:template name="Property">
-
-
-		<script src="js/MiScript.js" type="text/javascript"></script>
-
-
-		<section class="ftco-search">
-
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12 search-wrap">
-						<h2 class="heading h5 d-flex align-items-center pr-4">
-							<span class="ion-ios-search mr-3"></span> Encuentra tu casa
-						</h2>
-						<form action="#" method="post" class="search-property">
-							<div class="row">
-								<div class="col-md align-items-end">
-									<div class="form-group">
-										<label for="#">Palabra Clave</label>
-										<div class="form-field">
-											<div class="icon">
-												<span class="icon-my_location"></span>
-											</div>
-											<input type="text" class="form-control" placeholder="Palabra clave"/>
-										</div>
-									</div>
-								</div>
-								<div class="col-md align-items-end">
-									<div class="form-group">
-										<label for="#">Tipo de propiedad</label>
-										<div class="form-field">
-											<div class="select-wrap">
-												<div class="icon">
-													<span class="ion-ios-arrow-down"></span>
-												</div>
-												<select name="" id="" class="form-control">
-													<option value="">Type</option>
-													<option value="">Commercial</option>
-													<option value="">- Office</option>
-													<option value="">Residential</option>
-													<option value="">Villa</option>
-													<option value="">Condominium</option>
-													<option value="">Apartment</option>
-												</select>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md align-items-end">
-									<div class="form-group">
-										<label for="#">Estatus</label>
-										<div class="form-field">
-											<div class="select-wrap">
-												<div class="icon">
-													<span class="ion-ios-arrow-down"></span>
-												</div>
-												<select name="" id="" class="form-control">
-													<option value="">Type</option>
-													<option value="">Rent</option>
-													<option value="">Sale</option>
-												</select>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md align-items-end">
-									<div class="form-group">
-										<label for="#">Agentes</label>
-										<div class="form-field">
-											<div class="select-wrap">
-												<div class="icon">
-													<span class="ion-ios-arrow-down"></span>
-												</div>
-												<select name="" id="" class="form-control">
-													<option value="">Any</option>
-													<option value="">Jonh Doe</option>
-													<option value="">Doe Mags</option>
-													<option value="">Kenny Scott</option>
-													<option value="">Emily Storm</option>
-												</select>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-md align-items-end">
-									<div class="form-group">
-										<label for="#">Minimo Cuartos</label>
-										<div class="form-field">
-											<div class="select-wrap">
-												<div class="icon">
-													<span class="ion-ios-arrow-down"></span>
-												</div>
-												<select name="" id="" class="form-control">
-													<option value="">1</option>
-													<option value="">2</option>
-													<option value="">3</option>
-													<option value="">4</option>
-													<option value="">5</option>
-												</select>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md align-items-end">
-									<div class="form-group">
-										<label for="#">Min Price</label>
-										<div class="form-field">
-											<div class="select-wrap">
-												<div class="icon">
-													<span class="ion-ios-arrow-down"></span>
-												</div>
-												<select name="" id="" class="form-control">
-													<option value="">Min Price</option>
-													<option value="">$1,000</option>
-													<option value="">$5,000</option>
-													<option value="">$10,000</option>
-													<option value="">$50,000</option>
-													<option value="">$100,000</option>
-													<option value="">$200,000</option>
-													<option value="">$300,000</option>
-													<option value="">$400,000</option>
-													<option value="">$500,000</option>
-													<option value="">$600,000</option>
-													<option value="">$700,000</option>
-													<option value="">$800,000</option>
-													<option value="">$900,000</option>
-													<option value="">$1,000,000</option>
-												</select>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md align-items-end">
-									<div class="form-group">
-										<label for="#">Min Price</label>
-										<div class="form-field">
-											<div class="select-wrap">
-												<div class="icon">
-													<span class="ion-ios-arrow-down"></span>
-												</div>
-												<select name="" id="" class="form-control">
-													<option value="">Min Price</option>
-													<option value="">$5,000</option>
-													<option value="">$10,000</option>
-													<option value="">$50,000</option>
-													<option value="">$100,000</option>
-													<option value="">$200,000</option>
-													<option value="">$300,000</option>
-													<option value="">$400,000</option>
-													<option value="">$500,000</option>
-													<option value="">$600,000</option>
-													<option value="">$700,000</option>
-													<option value="">$800,000</option>
-													<option value="">$900,000</option>
-													<option value="">$1,000,000</option>
-													<option value="">$2,000,000</option>
-												</select>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md align-self-end">
-									<div class="form-group">
-										<div class="form-field">
-											<input type="submit" value="Search" class="form-control btn btn-primary" id="miBoton"/>
-										</div>
-									</div>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</section>
-
 
 		<section class="ftco-section bg-light">
 			<div class="container">
@@ -987,7 +825,7 @@
 		<section class="ftco-section testimony-section bg-light">
 			<h2>Juego Inmobiliario - Ordena los agentes de acuerdo a tu interes</h2>
 
-				<ul id="list"></ul>
+			<ul id="list"></ul>
 		</section>
 
 		<!--Referencia JS-->

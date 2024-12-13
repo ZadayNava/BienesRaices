@@ -164,12 +164,6 @@
 		</propiedadVip>
 	</propiedades>
 	<blog totalEntradas="3">
-		<entrada name="B1" Url="/WebForm1.aspx?Id=5" Texto="VenAJugar" Id="5">
-			<titulo>Un juego para el desestres del trabajo</titulo>
-			<fechaPublicacion formato="YYYY-MM-DD">2024-12-01</fechaPublicacion>
-			<numeroComentarios unidades="comentarios">15</numeroComentarios>
-			<Imagen>../assets/img/Blog1.jpeg</Imagen>
-		</entrada>
 		<entrada name="B2" Url="/WebForm1.aspx?Id=6" Texto="VideoAudio" Id="6">
 			<titulo>Un video y audio de informacion!</titulo>
 			<fechaPublicacion formato="YYYY-MM-DD">2024-11-20</fechaPublicacion>
@@ -177,10 +171,16 @@
 			<Imagen>../assets/img/Blog2.jpg</Imagen>
 		</entrada>
 		<entrada name="B3" Url="/WebForm1.aspx?Id=7" Texto="Ubicacion" Id="7">
-			<titulo>Encuentranos aqui! Estamos en tu corazon </titulo>
+			<titulo>Encuentranos aqui! api de google maps (dar clic aqui) </titulo>
 			<fechaPublicacion formato="YYYY-MM-DD">2024-10-15</fechaPublicacion>
 			<numeroComentarios unidades="comentarios">30</numeroComentarios>
 			<Imagen>../assets/img/Blog3.jpg</Imagen>
+		</entrada>
+		<entrada name="B1" Url="/WebForm1.aspx?Id=5" Texto="VenAJugar" Id="5">
+			<titulo>Drag and Drop al final del dia</titulo>
+			<fechaPublicacion formato="YYYY-MM-DD">2024-12-01</fechaPublicacion>
+			<numeroComentarios unidades="comentarios">15</numeroComentarios>
+			<Imagen>../assets/img/Blog1.jpeg</Imagen>
 		</entrada>
 	</blog>
 </inmobiliaria>
